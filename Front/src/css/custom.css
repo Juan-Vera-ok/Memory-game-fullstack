@@ -1,0 +1,72 @@
+.gameContainer{
+  top: 20%;
+  left:30%;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+  width:400px;
+  height:400px;
+  background-color: wheat;
+  border-radius: 50%;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+.square{
+    width: 50%;
+    height: 50%;
+}
+
+.midCircle{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 100px;
+  left: 100px;
+  background-color: black;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
+
+
+.red{
+  background-color: red;
+  filter: brightness(20%);
+}
+
+.redLight{
+  background-color: red;
+  filter: brightness(100%);
+}
+
+.blue{
+  background-color: blue;
+  filter:brightness(20%)
+}
+.blueLight{
+  background-color: blue;
+  filter:brightness(100%)
+}
+
+.yellow{
+  background-color: yellow;
+  filter:brightness(20%)
+}
+
+.yellowLight{
+  background-color: yellow;
+  filter:brightness(100%)
+}
+
+.green{
+  background-color: green;
+  filter:brightness(20%)
+}
+
+.greenLight{
+  background-color: green;
+  filter:brightness(100%)
+}
