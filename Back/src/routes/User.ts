@@ -1,9 +1,10 @@
 import {Schema, model} from 'mongoose'
 
 const userSchema = new Schema({
-    userName:{type: String,required: true,  trime: true},
-    email:{type: String,required: true,  trime: true},
-    password:{type: String,required: true,  trime: true}
+    userName:{type: String,required: true,  trime: true,unique:true},
+    email:{type: String,required: true,  trime: true,unique:true},
+    password:{type: String,required: true,  trime: true},
+    highScore:{type:Number , required:false}
 },{
     versionKey:false,
     timestamps:true,

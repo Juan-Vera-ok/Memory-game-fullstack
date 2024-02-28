@@ -3,15 +3,16 @@ const router = Router();
 
 import * as userController from './users.controllers';
 
+router.post('/user',userController.createUser);
+
 router.get('/users',userController.getUsers);
 
-router.get('/users/:id',userController.getUser);
+router.get('/user/:id',userController.getUser);
 
-router.post('/users',userController.createUser);
 
-router.delete('/users/:id',userController.deleteUser);
+router.delete('/user/:id',userController.deleteUser);
 
-router.put('/users/:id',userController.updateUser);
+router.put('/user/:id',userController.updateUser);
 
 
 

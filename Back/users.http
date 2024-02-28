@@ -1,3 +1,24 @@
 @api = http://localhost:4000
 
 GET {{api}}/users
+###
+GET {{api}}/user/65de8d0e8853dc53226f93f1
+###
+POST  {{api}}/user
+Content-Type: application/json
+
+{
+    "password" : "1223",
+    "email":"tipazofinal@gmail.com",
+    "userName" : "july3p tipazo definitivo"
+}
+###
+PUT  {{api}}/user/65de8d0e8853dc532a6f93f1
+Content-Type: application/json
+
+{
+    "password" : "Easy"
+}
+
+###
+DELETE {{api}}/user/65de921ba15db5a6755b88b5
