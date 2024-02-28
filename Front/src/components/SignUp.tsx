@@ -1,6 +1,7 @@
 import { left, right } from "@popperjs/core";
 import React, { useState } from "react"
-
+import axios from "axios";
+import { local } from "d3";
 export default function SignUp(){
     const Regex = RegExp(/^\s?[A-Z0–9]+[A-Z0–9._+-]{0,}@[A-Z0–9._+-]+\.[A-Z0–9]{2,4}\s?$/i);
     const [signUp,setSignUp]=useState(
@@ -118,6 +119,11 @@ export default function SignUp(){
         console.log(signUp);
         console.log(errors);}
 
+        const handleSignUpButton = async() =>{
+            const res = await axios.post('http://localhost:3000/user',signUp)
+            console.log(res)
+        }
+
 return  (
    <div className="d-flex flex-column min-vh-100 justify-content-center align-items-center">
         <form onSubmit={printValue}>
@@ -209,7 +215,7 @@ return  (
             <fieldset className="form-group">
             Al hacer click en "Submit" está aceptando los terminos y condiciones
             </fieldset>
-            <div className="text-center"><button type="submit" className= {Object.values(errors).every(value => value === false) ?"btn btn-primary text-center ":"btn btn-secondary text-center disabled"}>Submit</button></div>
+            <div className="text-center"><button type="submit" className= {Object.values(errors).every(value => value === false) ?"btn btn-primary text-center ":"btn btn-secondary text-center disabled"} onClick={handleSignUpButton}>Submit</button></div>
         </form>
    </div>
   
