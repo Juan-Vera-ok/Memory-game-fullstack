@@ -6,6 +6,9 @@ import SignUp from './SignUp';
 import { ProtectedRoute } from './ProtectedRoute';
 import { Buffer } from 'buffer';
 import { ProtectedRouteLogged } from './ProtectedRouteLogged';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 global.Buffer = Buffer;
 
@@ -40,6 +43,7 @@ global.Buffer = Buffer;
                                     
                                     
                             </Routes>
+                            <ToastContainer/>
                     </BrowserRouter>)
         }
         

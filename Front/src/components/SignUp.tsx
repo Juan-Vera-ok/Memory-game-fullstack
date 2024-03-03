@@ -1,7 +1,8 @@
 import { left, right } from "@popperjs/core";
 import React, { useState } from "react"
 import axios from "axios";
-import { local } from "d3";
+import { toast } from "react-toastify";
+
 export default function SignUp(){
     const Regex = RegExp(/^\s?[A-Z0–9]+[A-Z0–9._+-]{0,}@[A-Z0–9._+-]+\.[A-Z0–9]{2,4}\s?$/i);
     const [signUp,setSignUp]=useState(
@@ -120,8 +121,13 @@ export default function SignUp(){
         console.log(errors);}
 
         const handleSignUpButton = async() =>{
-            const res = await axios.post('http://localhost:3000/user',signUp)
-            console.log(res)
+            try {
+                const response = await axios.post('http://localhost:3000/user',signUp);
+                toast.success("Usuario agregado a la base de datos");
+            console.log(response)
+            } catch (error) {
+                console.log(error);
+            }
         }
 
 return  (
