@@ -2,8 +2,11 @@ import { left, right } from "@popperjs/core";
 import React, { useState } from "react"
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function SignUp(){
+    const navigate = useNavigate();
+
     const Regex = RegExp(/^\s?[A-Z0–9]+[A-Z0–9._+-]{0,}@[A-Z0–9._+-]+\.[A-Z0–9]{2,4}\s?$/i);
     const [signUp,setSignUp]=useState(
         {   email:'',
@@ -123,10 +126,31 @@ export default function SignUp(){
         const handleSignUpButton = async() =>{
             try {
                 const response = await axios.post('http://localhost:3000/user',signUp);
-                toast.success("Usuario agregado a la base de datos");
-            console.log(response)
+                console.log(response);
+                if(response.status==200){
+                    toast.success("Usuario creado");
+                    navigate("/");
+                }
+                
             } catch (error) {
-                console.log(error);
+                if(error.response.status){
+                    toast.error("Usuario ya existente")
+                    setSignUp({...signUp,   email:'',
+                    emailVerification:'',
+                    user:'',
+                    userVerification:''
+                });
+
+                setErrors({...errors,
+                    emailError:null,
+                    emailVerificationError:null,
+                    emailDoNotMatch:null,
+                    userError:null,
+                    userVerificationError:null,
+                    userDoNotMatch:null,
+                })
+                    
+                }
             }
         }
 
@@ -144,7 +168,7 @@ return  (
                 (errors.emailDoNotMatch?"form-control is-invalid":"form-control is-valid"))} 
                 placeholder="Ingrese e-mail" 
                 onChange={(e)=>{handleOnChange(e)}} 
-                />
+                value={signUp.email}/>
                 <div style={{float:left}}>{errors.emailError===null?<small>ㅤ</small>:(errors.emailError?<small className="text-danger">El e-mail ingresado es invalido</small>:<small className="text-success">E-mail valido</small>)}</div>
                 <div style={{float:right}}>{errors.emailDoNotMatch===null?<small>ㅤ</small>:(errors.emailDoNotMatch?<small className="text-danger ">Los e-mails no coinciden</small>:<small className="text-success">Los e-mails si coinciden</small>)}</div>
                 
@@ -158,6 +182,7 @@ return  (
                 (errors.emailDoNotMatch?"form-control is-invalid":"form-control is-valid"))} 
                 placeholder="Confirme su e-mail" 
                 onChange={(e)=>{handleOnChange(e)}} 
+                value={signUp.emailVerification}
                 />
                 <div style={{float:left}}>{errors.emailVerificationError===null?<small>ㅤ</small>:(errors.emailVerificationError?<small className="text-danger">El e-mail ingresado es invalido</small>:<small className="text-success">E-mail valido</small>)}</div>
                 <div style={{float:right}}>{errors.emailDoNotMatch===null?<small>ㅤ</small>:(errors.emailDoNotMatch?<small className="text-danger ">Los e-mails no coinciden</small>:<small className="text-success">Los e-mails si coinciden</small>)}</div>
@@ -172,6 +197,7 @@ return  (
                 (errors.userDoNotMatch?"form-control is-invalid":"form-control is-valid"))} 
                 placeholder="Ingrese su nombre de usuario" 
                 onChange={(e)=>{handleOnChange(e)}} 
+                value={signUp.user}
                 />
                 <div style={{float:left}}>{errors.userError===null?<small>ㅤ</small>:(errors.userError?<small className="text-danger">Mínimo 6 caracteres</small>:<small className="text-success">Usuario valido</small>)}</div>
                 <div style={{float:right}}>{errors.userDoNotMatch===null?<small>ㅤ</small>:(errors.userDoNotMatch?<small className="text-danger ">Los usuarios no coinciden</small>:<small className="text-success">Los usuarios si coinciden</small>)}</div>
@@ -186,6 +212,7 @@ return  (
                 (errors.userDoNotMatch?"form-control is-invalid":"form-control is-valid"))} 
                 placeholder="Confirme su nombre de usuario" 
                 onChange={(e)=>{handleOnChange(e)}} 
+                value={signUp.userVerification}
                 />
                 <div style={{float:left}}>{errors.userVerificationError===null?<small>ㅤ</small>:(errors.userVerificationError?<small className="text-danger">Mínimo 6 caracteres</small>:<small className="text-success">Usuario valido</small>)}</div>
                 <div style={{float:right}}>{errors.userDoNotMatch===null?<small>ㅤ</small>:(errors.userDoNotMatch?<small className="text-danger ">Los usuarios no coinciden</small>:<small className="text-success">Los usuarios si coinciden</small>)}</div>
@@ -200,6 +227,7 @@ return  (
                 (errors.passwordDoNotMatch?"form-control is-invalid":"form-control is-valid"))} 
                 placeholder="Ingrese su contraseña" 
                 onChange={(e)=>{handleOnChange(e)}} 
+                value={signUp.password}
                 />
                 <div style={{float:left}}>{errors.passwordError===null?<small>ㅤ</small>:(errors.passwordError?<small className="text-danger">Mínimo 10 caracteres</small>:<small className="text-success">Contraseña valida</small>)}</div>
                 <div style={{float:right}}>{errors.passwordDoNotMatch===null?<small>ㅤ</small>:(errors.passwordDoNotMatch?<small className="text-danger ">Las contraseñas no coinciden</small>:<small className="text-success">Las contraseñas si coinciden</small>)}</div>
@@ -213,6 +241,7 @@ return  (
                 (errors.passwordDoNotMatch?"form-control is-invalid":"form-control is-valid"))} 
                 placeholder="Confirme su contraseña" 
                 onChange={(e)=>{handleOnChange(e)}} 
+                value={signUp.passwordVerification}
                 />
                 <div style={{float:left}}>{errors.passwordVerificationError===null?<small>ㅤ</small>:(errors.passwordVerificationError?<small className="text-danger">Mínimo 10 caracteres</small>:<small className="text-success">Contraseña valida</small>)}</div>
                 <div style={{float:right}}>{errors.passwordDoNotMatch===null?<small>ㅤ</small>:(errors.passwordDoNotMatch?<small className="text-danger ">Las contraseñas no coinciden</small>:<small className="text-success">Las contraseñas si coinciden</small>)}</div>

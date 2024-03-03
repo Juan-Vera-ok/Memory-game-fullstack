@@ -2,8 +2,9 @@ import { RequestHandler } from "express";
 import User from "./User";
 
 export const createUser: RequestHandler = async (req,res) =>{
+    
     try {
-        const userFound = await User.findOne({userName: req.body.user})
+        const userFound = await User.findOne({user: req.body.user})
     if(userFound){
         return res.status(301).json({message:'El usuario ya existe'})
     }
