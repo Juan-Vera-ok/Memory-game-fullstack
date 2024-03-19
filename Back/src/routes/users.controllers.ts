@@ -1,6 +1,8 @@
 import { RequestHandler } from "express";
 import User from "./User";
 
+import * as bcrypt from "bcryptjs";
+
 export const createUser: RequestHandler = async (req,res) =>{
     
     try {
@@ -8,9 +10,21 @@ export const createUser: RequestHandler = async (req,res) =>{
     if(userFound){
         return res.status(301).json({message:'El usuario ya existe'})
     }
-    const user = new User(req.body)
-    const savedUser = await user.save()
+    const {email,password,user} = req.body;
+    console.log(password);
+    bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(password, salt, async function(err, hash) {
+        // Store hash in your password DB.
+        console.log(hash);
+        let password= hash;
+        const newUser = {email,password,user}
+    const registerUser = new User(newUser)
+    const savedUser = await registerUser.save()
     res.json(savedUser)
+        });
+        });
+    
+    
     } catch (error) {
         console.log(error)
     }

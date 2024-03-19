@@ -126,14 +126,14 @@ export default function SignUp(){
         const handleSignUpButton = async() =>{
             try {
                 const response = await axios.post('http://localhost:3000/user',signUp);
-                console.log(response);
+                console.log(response,"Jijo");
                 if(response.status==200){
                     toast.success("Usuario creado");
                     navigate("/");
                 }
                 
             } catch (error) {
-                if(error.response.status){
+                if(error.response.status==301){
                     toast.error("Usuario ya existente")
                     setSignUp({...signUp,   email:'',
                     emailVerification:'',
