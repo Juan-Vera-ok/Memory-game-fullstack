@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 import User from "./User";
 
-import * as bcrypt from "bcryptjs";
+import bcryptNow from "../helpers/handleBcrypt";
 
 export const createUser: RequestHandler = async (req,res) =>{
     
@@ -12,17 +12,14 @@ export const createUser: RequestHandler = async (req,res) =>{
     }
     const {email,password,user} = req.body;
     console.log(password);
-    bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(password, salt, async function(err, hash) {
-        // Store hash in your password DB.
-        console.log(hash);
-        let password= hash;
-        const newUser = {email,password,user}
+    const passwordHashed =  bcryptNow.encrypt(password);
+        console.log("PASSWORD HASHED: ",passwordHashed);
+    const newUser = {email,passwordHashed,user}
     const registerUser = new User(newUser)
     const savedUser = await registerUser.save()
     res.json(savedUser)
-        });
-        });
+        
+        
     
     
     } catch (error) {

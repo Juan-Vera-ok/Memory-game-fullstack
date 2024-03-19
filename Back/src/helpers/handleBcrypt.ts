@@ -1,13 +1,10 @@
 import * as bcrypt from "bcryptjs"
 
-const encrypt = async (textplain:string)=>{
+const encrypt = (textplain:string)=>{
     
-  bcrypt.genSalt(10, function(err, salt) {
-    bcrypt.hash(textplain, salt, function(err, hash) {
-        console.log();
-    });
-});
-
+    var salt = bcrypt.genSaltSync(10);
+var hash = bcrypt.hashSync(textplain, salt);
+return hash;
 }
     
 
