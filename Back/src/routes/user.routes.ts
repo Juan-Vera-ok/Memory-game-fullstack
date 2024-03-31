@@ -7,12 +7,12 @@ router.post('/user',userController.createUser);
 
 router.get('/users',userController.getUsers);
 
-router.get('/user/:id',userController.getUser);
-
+router.post('/userAuth',userController.auth)
 
 router.delete('/user/:id',userController.deleteUser);
 
 router.put('/user/:id',userController.updateUser);
+
 
 
 

@@ -11,8 +11,8 @@ export function Login(props)
     const navigate = useNavigate();
 
 const [form,setForm]=useState({
-    user:null,
-    password:null
+    user:"",
+    password:""
 })
 
 const [userErr,setUserErr] = useState<boolean|null>(null)
@@ -21,18 +21,36 @@ const [passwordErr,setPasswordErr] = useState<boolean|null>(null)
 
 
 
-const handleSubmit = async (e)=>{
-    e.preventDefault()
-   
-    let isAuth=false
-    isAuth = await loginHandler(form)
-    
-    if(isAuth===true){props.setUserAuth(true)}
-    if(window.localStorage.getItem("token")){props.setUserAuth(true)}
-    
-   
-    
-    navigate("/")
+const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log("FORMULARIO" + form.user + form.password);
+    const config = {
+        data: {
+            username: form.user,
+            password: form.password
+        },
+    };
+
+    console.log(config)
+    try {
+        console.log("TRY")
+        const userIdResponse = await axios.post('http://localhost:3000/userAuth',config,{withCredentials:true});
+        console.log("DDDDD"+userIdResponse);
+        
+        const userId = userIdResponse.data;
+
+        console.log(userId);
+
+        if (userId) {
+            console.log("Loggeado");
+            let isAuth= true;
+            props.setUserAuth(isAuth);
+            navigate("/");
+        }
+    } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
+    }
 }
         
 
@@ -51,7 +69,7 @@ const handleSubmit = async (e)=>{
                  password: e.target.value
             }
         )
-        
+
     }
         
         let item = e.target

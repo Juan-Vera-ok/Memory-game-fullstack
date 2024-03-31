@@ -2,6 +2,8 @@ import { RequestHandler } from "express";
 import User from "./User";
 
 import bcryptNow from "../helpers/handleBcrypt";
+import { compare } from "bcryptjs";
+import { token } from "morgan";
 
 export const createUser: RequestHandler = async (req,res) =>{
     
@@ -11,9 +13,7 @@ export const createUser: RequestHandler = async (req,res) =>{
         return res.status(301).json({message:'El usuario ya existe'})
     }
     const {email,password,user} = req.body;
-    console.log(password);
     const passwordHashed =  bcryptNow.encrypt(password);
-        console.log("PASSWORD HASHED: ",passwordHashed);
     const newUser = {email,passwordHashed,user}
     const registerUser = new User(newUser)
     const savedUser = await registerUser.save()
@@ -35,11 +35,25 @@ export const getUsers: RequestHandler = async (req,res) =>{
         res.json(error)
     }
 }
+export const auth: RequestHandler = async (req,res) =>{
+    try {
+        
+        console.log(req.body.data)
+        const userFound= await User.findOne({user: req.body.data.username})
+        console.log("XDDDD"+userFound);
 
-export const getUser: RequestHandler = async (req,res) =>{
-    const userFind = await User.findById(req.params.id)
-    if(!userFind) { return res.status(204).json();}
-    return res.json(userFind)
+        const correctPassword = await bcryptNow.compare(req.body.data.password,userFound?.passwordHashed)
+        if(correctPassword){
+            res.cookie("token",userFound?.id)
+            
+            res.json(200)
+        }else{res.json(403)}
+        
+        if(userFound){return userFound.id;}
+        
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export const deleteUser: RequestHandler = async (req,res) =>{

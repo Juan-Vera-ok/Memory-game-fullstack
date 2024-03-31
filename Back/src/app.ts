@@ -1,16 +1,25 @@
 import express from 'express'
+import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import cors from 'cors'
 import config from './config'
 import userRoutes from './routes/user.routes'
 const app = express ()
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
 app.set('PORT',config.PORT)
 
 app.use(morgan('dev'));
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({extended:false}))
+const corsOptions ={
+    origin:'http://localhost:4000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
+
+
 
 app.use(userRoutes)
 
