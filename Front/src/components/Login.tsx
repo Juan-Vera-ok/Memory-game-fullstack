@@ -2,7 +2,7 @@ import React, {useState,useEffect} from "react"
 import { Link, Navigate, useNavigate } from "react-router-dom"
 import axios from "axios";
 import loginHandler from "../api/auth/login";
-
+import { toast } from "react-toastify";
 
 
 
@@ -38,15 +38,21 @@ const handleSubmit = async (e) => {
         const userIdResponse = await axios.post('http://localhost:3000/userAuth',config,{withCredentials:true});
         console.log("DDDDD"+userIdResponse);
         
-        const userId = userIdResponse.data;
 
-        console.log(userId);
+        console.log("ssss"+userIdResponse);
 
-        if (userId) {
+        if (userIdResponse.data===200) {
             console.log("Loggeado");
             let isAuth= true;
             props.setUserAuth(isAuth);
             navigate("/");
+        }else{
+            if(userIdResponse.data===301){
+            toast.error("Usuario o contraseñas invalidas");
+        setForm({user:"",password:""})
+        setPasswordErr(null);
+        setUserErr(null);
+    }
         }
     } catch (error) {
         console.error('Error al realizar la solicitud:', error);
@@ -102,7 +108,8 @@ const handleSubmit = async (e) => {
                             name="user" 
                             placeholder="Ingrese nombre de usuario" 
                             type="text" 
-                            className={(userErr===null)?"form-control":(userErr?"form-control is-invalid":"form-control is-valid")}  
+                            className={(userErr===null)?"form-control":(userErr?"form-control is-invalid":"form-control is-valid")}
+                            value={form.user}  
                             onChange={handleOnChange}></input>
                             {(userErr===null)?"ㅤ":(userErr?<span className="invalid-feedback">
                                 El usuario debe tener mínimo 6 caracteres</span>:<span 
@@ -121,6 +128,7 @@ const handleSubmit = async (e) => {
                             placeholder="Ingrese contraseña" 
                             type="password" 
                             className={(passwordErr===null)?"form-control":(passwordErr?"form-control is-invalid": "form-control is-valid")} 
+                            value={form.password}
                             onChange={handleOnChange}>
                             </input>
                             {(passwordErr===null)?"ㅤ":(passwordErr?<span 

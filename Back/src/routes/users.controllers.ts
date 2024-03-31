@@ -41,15 +41,21 @@ export const auth: RequestHandler = async (req,res) =>{
         console.log(req.body.data)
         const userFound= await User.findOne({user: req.body.data.username})
         console.log("XDDDD"+userFound);
-
-        const correctPassword = await bcryptNow.compare(req.body.data.password,userFound?.passwordHashed)
-        if(correctPassword){
-            res.cookie("token",userFound?.id)
-            
-            res.json(200)
-        }else{res.json(403)}
+        if(userFound)
+        {const correctPassword = await bcryptNow.compare(req.body.data.password,userFound?.passwordHashed)
         
-        if(userFound){return userFound.id;}
+            if(correctPassword){
+                res.cookie("token",userFound?.id)
+                
+                res.json(200)
+            }
+                
+        }
+            if(!userFound){
+                console.log("SSSSSSSSSSSSSSSSSSS")
+                res.json(301)
+            }
+        
         
     } catch (error) {
         console.log(error)
