@@ -7,7 +7,7 @@ export default function Navbar(props){
   const navigate = useNavigate();
 
 const logOut = ()=>{
-  window.localStorage.removeItem("token")
+  document.cookie = ""  
   props.setUserAuth(false)
 }
 

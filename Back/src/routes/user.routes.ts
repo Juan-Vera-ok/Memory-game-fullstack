@@ -1,8 +1,9 @@
 import {Router} from 'express'
-const router = Router();
-
 import * as userController from './users.controllers';
+import checkAuth from '../middlewares/isAuth';
 
+const router = Router();
+router.use(checkAuth)
 router.post('/user',userController.createUser);
 
 router.get('/users',userController.getUsers);

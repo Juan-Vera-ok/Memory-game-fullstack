@@ -4,6 +4,7 @@ import User from "./User";
 import bcryptNow from "../helpers/handleBcrypt";
 import { compare } from "bcryptjs";
 import { token } from "morgan";
+import{ tokenSign} from "../helpers/generateToken";
 
 export const createUser: RequestHandler = async (req,res) =>{
     
@@ -45,7 +46,8 @@ export const auth: RequestHandler = async (req,res) =>{
         {const correctPassword = await bcryptNow.compare(req.body.data.password,userFound?.passwordHashed)
         
             if(correctPassword){
-                res.cookie("token",userFound?.id)
+                const tokenSession = await tokenSign(userFound)
+                res.cookie("token",tokenSession)
                 
                 res.json(200)
             }

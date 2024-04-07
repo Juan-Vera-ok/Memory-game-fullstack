@@ -1,7 +1,7 @@
-import React,{useState,useEffect} from 'react'
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Home';
-import {Login} from './Login';
+import { Login } from './Login';
 import SignUp from './SignUp';
 import { ProtectedRoute } from './ProtectedRoute';
 import { Buffer } from 'buffer';
@@ -12,42 +12,35 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
-    export default function App(){
-      let isAuth=false
-      if(window.localStorage.getItem("token")){
-        isAuth=true
-      }
-        const [userAuth,setUserAuth]=useState(isAuth)
+export default function App() {
 
-        useEffect(()=>{
-          window.addEventListener('storage',()=>{
-            setUserAuth(false)
-          })
-        })
-        
 
-            return(
-              
-                <BrowserRouter>
-                  
-                            <Routes>
-                                    <Route element={<ProtectedRouteLogged userAuth={userAuth}/>}>
-                                    <Route path="/login" element={<Login userAuth={userAuth} setUserAuth={setUserAuth} />} />
-                                    <Route path="/sign-up" element={<SignUp/>}></Route>
-                                    </Route>
-                            
-                                        <Route element={<ProtectedRoute userAuth={userAuth}/>}>
-                                                <Route path="/" element={<Home userAuth={userAuth} setUserAuth={setUserAuth} />} />
-                                        </Route>    
-                                    
-                                    
-                            </Routes>
-                            <ToastContainer/>
-                    </BrowserRouter>)
-        }
-        
-        
-        
-    
-    
+  const [isAuth, setIsAuth] = useState<boolean>();
+  useEffect(() => {
+    authenticate().then(setIsAuth)
+  }, [])
+  return (
+
+    <BrowserRouter>
+
+      <Routes>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/sign-up" element={<SignUp />}></Route>
+
+        <ProtectedRoute isAuth={isAuth} component={<Home></Home>}>
+        </ProtectedRoute>
+
+
+
+      </Routes>
+      <ToastContainer />
+    </BrowserRouter>)
+}
+
+
+
+async function authenticate(): Promise<boolean> {
+  return !!document.cookie;
+}
+
 
