@@ -1,22 +1,12 @@
-import React, { FC } from "react"
+import React, { FC, ReactNode } from "react"
 import {Navigate, Outlet, Route} from "react-router-dom"
 
 interface Props{
     isAuth:boolean;
-    component: FC
+    component: React.ReactElement
 }
-
 
 export const ProtectedRoute = (props:Props)=>{
-
-    return (
-        <Route element={()=>{
-            return props.component()
-        }}></Route>
-    )
+    const element = props.isAuth ? props.component : null;
+    return (<Route element={element} />); 
 }
-
-interface WrapperProps{
-    
-}
-const Wrapper = ()=>{}
