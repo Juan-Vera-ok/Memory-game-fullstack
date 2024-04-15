@@ -1,3 +1,4 @@
+import config from "../config";
 
 const jwt = require ('jsonwebtoken')
 
@@ -6,7 +7,7 @@ export const tokenSign = async(user:any)=>{
         {
             _id: user.id
         },
-        process.env.JWT_SECRET,
+        config.JWT_SECRET,
         {
             expiresIn: "2h"
         }
