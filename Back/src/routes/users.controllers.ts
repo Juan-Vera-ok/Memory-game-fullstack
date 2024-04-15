@@ -31,7 +31,10 @@ export const createUser: RequestHandler = async (req, res) => {
 export const getUsers: RequestHandler = async (req, res) => {
     try {
         const users = await User.find();
-        res.json(users)
+        const sortedUsers = users.sort((a,b)=>{
+            return (a.highScore||0)-(b.highScore||0);
+        })
+        res.json(sortedUsers)
     } catch (error) {
         res.json(error)
     }
