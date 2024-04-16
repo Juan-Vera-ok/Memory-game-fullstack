@@ -4,7 +4,8 @@ import User from "./User";
 import bcryptNow from "../helpers/handleBcrypt";
 import { compare } from "bcryptjs";
 import { token } from "morgan";
-import { tokenSign } from "../helpers/generateToken";
+import { tokenSign,verifyToken } from "../helpers/generateToken";
+import mongoose from "mongoose";
 
 export const createUser: RequestHandler = async (req, res) => {
 
@@ -76,4 +77,21 @@ export const deleteUser: RequestHandler = async (req, res) => {
 export const updateUser: RequestHandler = async (req, res) => {
     const userUpdated = await User.findByIdAndUpdate(req.params.id, req.body, { new: true })
     res.json(userUpdated);
+}
+
+export const updateHighScore:RequestHandler= async (req,res)=>{
+    debugger
+    const userId= verifyToken(req.cookies.token)
+    
+    const user= await User.findById(userId);
+    if(!user){throw new Error}
+    if(!user.highScore){
+        user.highScore = req.body.data;
+        await User.updateOne(user.id,user)
+        return res.json(user)
+    }
+    if(req.body.data>user.highScore){
+        await User.updateOne(user.id,user)
+        return res.json(user)
+    }
 }

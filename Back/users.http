@@ -2,7 +2,7 @@
 
 GET {{api}}/users
 ###
-GET {{api}}/user/65df65d73115d357c7bf7544
+GET {{api}}/user/66074ccc33fdf740578ba082
 ###
 POST  {{api}}/user
 Content-Type: application/json

@@ -1,8 +1,7 @@
 import config from "../config";
-
-const jwt = require ('jsonwebtoken')
-
+import jwt from "jsonwebtoken"
 export const tokenSign = async(user:any)=>{
+
     return jwt.sign(
         {
             _id: user.id
@@ -14,9 +13,9 @@ export const tokenSign = async(user:any)=>{
     );
 }
 
-export const verifyToken = async (token:any)=>{
+export const verifyToken = async (token:string)=>{
     try {
-        return jwt.verify(token,process.env.JWT_SECRET)
+        return jwt.verify(token,config.JWT_SECRET)
     } catch (error) {
         return null
     }

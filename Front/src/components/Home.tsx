@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import Navbar from "./Navbar"
 import "../css/custom.css"
 import { start } from "@popperjs/core";
+import axios from "axios";
 
 interface Props {
     onLogout: () => void;
@@ -65,7 +66,11 @@ export default function Home(props: Props) {
 
                 setPattern(newPattern)
                 setUserPattern([]);
-                if (userPattern.length > userHighScore) { setUserHighScore(userHighScore + 1) }
+                if (userPattern.length > userHighScore) { 
+                    debugger
+                    setUserHighScore(userHighScore + 1) 
+                    const response = await axios.post('http://localhost:3000/update-highscore',{userHighScore},{ withCredentials: true })
+                }
 
             }
         }
