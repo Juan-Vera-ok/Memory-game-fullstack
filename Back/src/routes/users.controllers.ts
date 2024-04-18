@@ -80,18 +80,23 @@ export const updateUser: RequestHandler = async (req, res) => {
 }
 
 export const updateHighScore:RequestHandler= async (req,res)=>{
-    debugger
-    const userId= verifyToken(req.cookies.token)
     
-    const user= await User.findById(userId);
-    if(!user){throw new Error}
+    const tokenPromise= verifyToken(req.cookies.token)
+    tokenPromise.then(async (_id)=>{
+        const user= await User.findById(_id);
+    
+        if(!user){throw new Error}
     if(!user.highScore){
         user.highScore = req.body.data;
-        await User.updateOne(user.id,user)
+        debugger
+        await User.updateOne({_id:user._id},{$set:{'highScore':req.body.userHighScore}})
         return res.json(user)
     }
     if(req.body.data>user.highScore){
         await User.updateOne(user.id,user)
         return res.json(user)
     }
+    })
+    
+    
 }
