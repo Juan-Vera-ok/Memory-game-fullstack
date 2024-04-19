@@ -129,7 +129,7 @@ export default function SignUp(){
                 console.log(response,"Jijo");
                 if(response.status==200){
                     toast.success("Usuario creado");
-                    navigate("/");
+                    navigate("/login");
                 }
                 
             } catch (error) {

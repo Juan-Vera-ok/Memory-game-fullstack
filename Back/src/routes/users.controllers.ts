@@ -31,11 +31,9 @@ export const createUser: RequestHandler = async (req, res) => {
 
 export const getUsers: RequestHandler = async (req, res) => {
     try {
-        const users = await User.find();
-        const sortedUsers = users.sort((a, b) => {
-            return (a.highScore || 0) - (b.highScore || 0);
-        })
-        res.json(sortedUsers)
+        const users = await User.find().sort([['highScore',-1]]).limit(5);
+        const top = users.map((user)=>{return {user:user.user,highscore:user.highScore}})
+        res.json(top)
     } catch (error) {
         res.json(error)
     }
@@ -83,6 +81,7 @@ export const updateHighScore: RequestHandler = async (req, res) => {
     const tokenPromise = verifyToken(req.cookies.token)
     tokenPromise.then(async (_id) => {
         const user = await User.findById(_id);
+        
         if (!user) { throw new Error }
         if (!user.highScore||user.highScore < req.body.newUserHighScore) {
             await User.updateOne({ _id: user._id }, { $set: { 'highScore': req.body.newUserHighScore } })
@@ -91,4 +90,9 @@ export const updateHighScore: RequestHandler = async (req, res) => {
     })
 
 
+}
+
+export const top5:RequestHandler = async (req,res)=>{
+    
+    res.json();
 }

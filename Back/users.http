@@ -21,4 +21,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{api}}/user/66074ccc33fdf740578ba082
+DELETE {{api}}/user/6608b551188e9f842bd22c19

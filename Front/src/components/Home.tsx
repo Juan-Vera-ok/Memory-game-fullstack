@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react"
+import React, { ReactNode, useEffect, useState } from "react"
 import Navbar from "./Navbar"
 import "../css/custom.css"
 import { start } from "@popperjs/core";
 import axios from "axios";
+import { json } from "react-router-dom";
 
 interface Props {
     onLogout: () => void;
@@ -18,7 +19,7 @@ export default function Home(props: Props) {
 
     const min = 1;
     const max = 5;
-
+    const [topUsers,setTopUsers] = useState<any[]>([])
     const [pattern, setPattern] = useState<number[]>([]);
     const [userPattern, setUserPattern] = useState<number[]>([]);
     const [userHighScore, setUserHighScore] = useState(0);
@@ -194,34 +195,14 @@ export default function Home(props: Props) {
         setPattern(newPattern)
     };
 
+    useEffect(()=>{
+        const promiseUser=  axios.get('http://localhost:3000/users')
+            promiseUser.then((users)=>{ setTopUsers(users.data)})
+    },[])
 
-
-
-
-
-    /*useEffect(()=>{
-        if(isPlaying){       
-           
-            if(userPattern.length>=1&&userPattern.length===pattern.length){
-                if(checkPattern()){
-                    setTimeout(showPattern, 2500)
-                    
-            }}
-            
-            if(pattern.length>=1&&userPattern.length===0){
-                setTimeout(showPattern, 2500)
-            }
-        }
-        
-             
-            
-        
-        
-        return()=>{
+        const showTop5= ()=>{
             
         }
-    */
-
 
     return (
         <div >
@@ -234,6 +215,7 @@ export default function Home(props: Props) {
                 <div className="midCircle" onClick={startGame}> {pattern.length === 0 ? "Start" : "Round " + pattern.length}</div>
             </div>
             <div className="d-flex flex-column min-vh-50 justify-content-center align-items-center">{pattern.length === 0 ? undefined : "High score: " + userHighScore}</div>
+            <div>{topUsers.map(user=>{return <div>{JSON.stringify(user,null,4)}</div>})}</div>
 
         </div>
     )

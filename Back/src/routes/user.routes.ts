@@ -8,6 +8,7 @@ router.get('/users', userController.getUsers);
 router.post('/userAuth', userController.auth);
 router.delete('/user/:id', userController.deleteUser);
 router.put('/user/:id', userController.updateUser);
-router.post('/update-highscore',userController.updateHighScore)
+router.post('/update-highscore',userController.updateHighScore);
+router.post('/top5',userController.top5)
 
 export default router
