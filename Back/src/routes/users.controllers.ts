@@ -4,7 +4,7 @@ import User from "./User";
 import bcryptNow from "../helpers/handleBcrypt";
 import { compare } from "bcryptjs";
 import { token } from "morgan";
-import { tokenSign,verifyToken } from "../helpers/generateToken";
+import { tokenSign, verifyToken } from "../helpers/generateToken";
 import mongoose from "mongoose";
 
 export const createUser: RequestHandler = async (req, res) => {
@@ -32,8 +32,8 @@ export const createUser: RequestHandler = async (req, res) => {
 export const getUsers: RequestHandler = async (req, res) => {
     try {
         const users = await User.find();
-        const sortedUsers = users.sort((a,b)=>{
-            return (a.highScore||0)-(b.highScore||0);
+        const sortedUsers = users.sort((a, b) => {
+            return (a.highScore || 0) - (b.highScore || 0);
         })
         res.json(sortedUsers)
     } catch (error) {
@@ -79,24 +79,16 @@ export const updateUser: RequestHandler = async (req, res) => {
     res.json(userUpdated);
 }
 
-export const updateHighScore:RequestHandler= async (req,res)=>{
-    
-    const tokenPromise= verifyToken(req.cookies.token)
-    tokenPromise.then(async (_id)=>{
-        const user= await User.findById(_id);
-    
-        if(!user){throw new Error}
-    if(!user.highScore){
-        user.highScore = req.body.data;
-        debugger
-        await User.updateOne({_id:user._id},{$set:{'highScore':req.body.userHighScore}})
-        return res.json(user)
-    }
-    if(req.body.data>user.highScore){
-        await User.updateOne(user.id,user)
-        return res.json(user)
-    }
+export const updateHighScore: RequestHandler = async (req, res) => {
+    const tokenPromise = verifyToken(req.cookies.token)
+    tokenPromise.then(async (_id) => {
+        const user = await User.findById(_id);
+        if (!user) { throw new Error }
+        if (!user.highScore||user.highScore < req.body.newUserHighScore) {
+            await User.updateOne({ _id: user._id }, { $set: { 'highScore': req.body.newUserHighScore } })
+            return res.json(user)
+        }
     })
-    
-    
+
+
 }

@@ -66,11 +66,13 @@ export default function Home(props: Props) {
 
                 setPattern(newPattern)
                 setUserPattern([]);
-                if (userPattern.length > userHighScore) { 
-                    debugger
-                    setUserHighScore(userHighScore + 1) 
-                    const response = await axios.post('http://localhost:3000/update-highscore',{userHighScore},{ withCredentials: true })
-                }
+                if (userPattern.length > userHighScore) {
+                    const newUserHighScore = userHighScore +1;
+                    setUserHighScore(newUserHighScore)
+                    const response =  axios.post('http://localhost:3000/update-highscore',{newUserHighScore},{ withCredentials: true })
+                    
+                    
+               }
 
             }
         }
