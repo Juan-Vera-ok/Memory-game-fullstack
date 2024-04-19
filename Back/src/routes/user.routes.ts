@@ -9,6 +9,6 @@ router.post('/userAuth', userController.auth);
 router.delete('/user/:id', userController.deleteUser);
 router.put('/user/:id', userController.updateUser);
 router.post('/update-highscore',userController.updateHighScore);
-router.post('/top5',userController.top5)
+router.post('/best-HighScore-current-user',userController.bestHighScoreOfCurrentUser)
 
 export default router

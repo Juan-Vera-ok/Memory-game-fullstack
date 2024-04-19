@@ -19,7 +19,7 @@ export default function Home(props: Props) {
 
     const min = 1;
     const max = 5;
-    const [topUsers,setTopUsers] = useState<any[]>([])
+    const [topUsers, setTopUsers] = useState<any[]>([])
     const [pattern, setPattern] = useState<number[]>([]);
     const [userPattern, setUserPattern] = useState<number[]>([]);
     const [userHighScore, setUserHighScore] = useState(0);
@@ -68,12 +68,12 @@ export default function Home(props: Props) {
                 setPattern(newPattern)
                 setUserPattern([]);
                 if (userPattern.length > userHighScore) {
-                    const newUserHighScore = userHighScore +1;
+                    const newUserHighScore = userHighScore + 1;
                     setUserHighScore(newUserHighScore)
-                    const response =  axios.post('http://localhost:3000/update-highscore',{newUserHighScore},{ withCredentials: true })
-                    
-                    
-               }
+                    const response = axios.post('http://localhost:3000/update-highscore', { newUserHighScore }, { withCredentials: true })
+
+
+                }
 
             }
         }
@@ -195,14 +195,18 @@ export default function Home(props: Props) {
         setPattern(newPattern)
     };
 
-    useEffect(()=>{
-        const promiseUser=  axios.get('http://localhost:3000/users')
-            promiseUser.then((users)=>{ setTopUsers(users.data)})
-    },[])
-
-        const showTop5= ()=>{
+    useEffect(() => {
+        const promiseUser = axios.get('http://localhost:3000/users')
+        promiseUser.then((users) => { setTopUsers(users.data) })
+        const promiseHighScore = axios.post('http://localhost:3000/best-HighScore-current-user',{},{withCredentials:true})
+        promiseHighScore.then((highscore) => {
+            setUserHighScore(highscore.data)
             
-        }
+        })
+        
+    }, [])
+
+
 
     return (
         <div >
@@ -214,8 +218,8 @@ export default function Home(props: Props) {
                 <div className={(lights.yellowLight === true) ? "square yellowLight" : "square yellow"} onClick={() => { handleOnClick("yellow") }}></div>
                 <div className="midCircle" onClick={startGame}> {pattern.length === 0 ? "Start" : "Round " + pattern.length}</div>
             </div>
-            <div className="d-flex flex-column min-vh-50 justify-content-center align-items-center">{pattern.length === 0 ? undefined : "High score: " + userHighScore}</div>
-            <div>{topUsers.map(user=>{return <div>{JSON.stringify(user,null,4)}</div>})}</div>
+            <div className="d-flex flex-column min-vh-50 justify-content-center align-items-center">{"Your best high score: " + userHighScore}</div>
+            <div>{topUsers.map(user => { return <div>{JSON.stringify(user, null, 4)}</div> })}</div>
 
         </div>
     )
