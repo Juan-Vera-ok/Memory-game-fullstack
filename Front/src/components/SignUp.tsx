@@ -155,7 +155,7 @@ export default function SignUp(){
         }
 
 return  (
-   <div className="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+   <div className="d-flex flex-column min-vh-100 justify-content-center align-items-center retro">
         <form onSubmit={printValue}>
             <div className="form-group">
                 <fieldset>

@@ -92,7 +92,7 @@ export const updateHighScore: RequestHandler = async (req, res) => {
 
 }
 
-export const bestHighScoreOfCurrentUser:RequestHandler = async (req,res)=>{
+export const highScoreOfCurrentUser:RequestHandler = async (req,res)=>{
     const tokenPromise = verifyToken(req.cookies.token)
     tokenPromise.then(async (_id)=>{
         const user = await User.findById(_id);

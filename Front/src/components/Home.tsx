@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect, useState } from "react"
 import Navbar from "./Navbar"
 import "../css/custom.css"
+import "../css/retroHighScore.css"
 import { start } from "@popperjs/core";
 import axios from "axios";
 import { json } from "react-router-dom";
@@ -198,28 +199,37 @@ export default function Home(props: Props) {
     useEffect(() => {
         const promiseUser = axios.get('http://localhost:3000/users')
         promiseUser.then((users) => { setTopUsers(users.data) })
-        const promiseHighScore = axios.post('http://localhost:3000/best-HighScore-current-user',{},{withCredentials:true})
+        const promiseHighScore = axios.post('http://localhost:3000/highScore-current-user', {}, { withCredentials: true })
         promiseHighScore.then((highscore) => {
             setUserHighScore(highscore.data)
-            
+
         })
-        
-    }, [])
+
+    }, [userHighScore])
 
 
 
     return (
         <div >
             <Navbar onLogout={props.onLogout}></Navbar>
-            <div className="gameContainer">
+            <div className="gameContainer retro">
                 <div className={(lights.redLight === true) ? "square redLight" : "square red"} onClick={() => { handleOnClick("red") }}></div>
                 <div className={(lights.greenLight === true) ? "square greenLight" : "square green"} onClick={() => { handleOnClick("green") }}></div>
                 <div className={(lights.blueLight === true) ? "square blueLight" : "square blue"} onClick={() => { handleOnClick("blue") }}></div>
                 <div className={(lights.yellowLight === true) ? "square yellowLight" : "square yellow"} onClick={() => { handleOnClick("yellow") }}></div>
-                <div className="midCircle" onClick={startGame}> {pattern.length === 0 ? "Start" : "Round " + pattern.length}</div>
+                <div className="midCircle retro" onClick={startGame}> {pattern.length === 0 ? "Start" : "Round " + pattern.length}</div>
             </div>
-            <div className="d-flex flex-column min-vh-50 justify-content-center align-items-center">{"Your best high score: " + userHighScore}</div>
-            <div>{topUsers.map(user => { return <div>{JSON.stringify(user, null, 4)}</div> })}</div>
+            <div className="d-flex flex-column min-vh-50 justify-content-center align-items-center retro">{"Your high score: " + userHighScore}</div>
+            <div>
+                <div className="retro">Top 5 best players</div>
+            </div>
+            <div>
+                <div className="divUsers">{topUsers.map(user => { return <div>Rank:{topUsers.indexOf(user)+1}</div> })}</div>
+
+                <div className="divUsers">{topUsers.map(user => { return <div>{JSON.stringify(user.user, null, 4)}</div> })}</div>
+                <div className="divHighScores">{topUsers.map(user => { return <div>{JSON.stringify(user.highscore, null, 4)}</div> })}</div>
+
+            </div>
 
         </div>
     )

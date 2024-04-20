@@ -1,0 +1,24 @@
+.divUsers{
+    widh:10%;
+    float:left;
+    text-align: center;
+vertical-align: middle;
+font-family: 'Pixel Sans Serif', sans-serif;
+font-family: 'Pixel Sans Serif Condensed', sans-serif;
+
+}
+
+.divHighScores{
+    width: 10%;
+    float: left;
+    text-align: center;
+vertical-align: middle;
+font-family: 'Pixel Sans Serif', sans-serif;
+font-family: 'Pixel Sans Serif Condensed', sans-serif;
+
+}
+
+.retro{
+    font-family: 'Pixel Sans Serif', sans-serif;
+font-family: 'Pixel Sans Serif Condensed', sans-serif;
+}
