@@ -1,24 +1,44 @@
-.divUsers{
-    widh:10%;
-    float:left;
+.retroContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     text-align: center;
-vertical-align: middle;
-font-family: 'Pixel Sans Serif', sans-serif;
-font-family: 'Pixel Sans Serif Condensed', sans-serif;
-
+    margin: 16px;
 }
 
-.divHighScores{
-    width: 10%;
-    float: left;
+.divTittle{
+    display:flex;
+    flex-direction: column;
     text-align: center;
-vertical-align: middle;
-font-family: 'Pixel Sans Serif', sans-serif;
-font-family: 'Pixel Sans Serif Condensed', sans-serif;
-
 }
 
-.retro{
+.divRank{
+    text-align: center;
+    vertical-align: middle;
     font-family: 'Pixel Sans Serif', sans-serif;
-font-family: 'Pixel Sans Serif Condensed', sans-serif;
+    font-family: 'Pixel Sans Serif Condensed', sans-serif;
+    float: left; 
+            
+
+}
+.divUsers {
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'Pixel Sans Serif', sans-serif;
+    font-family: 'Pixel Sans Serif Condensed', sans-serif;
+    flex-direction: column;
+    float: left;
+}
+
+.divHighScores {
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'Pixel Sans Serif', sans-serif;
+    font-family: 'Pixel Sans Serif Condensed', sans-serif;
+    flex-direction: column;
+    float: left;
+}
+
+*{
+    font-family: 'Pixel Sans Serif', sans-serif;
 }

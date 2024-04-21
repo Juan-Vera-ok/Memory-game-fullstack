@@ -108,14 +108,14 @@ export function Login(props: Props) {
                             <input
                                 style={{ width: 300 }}
                                 name="user"
-                                placeholder="Ingrese nombre de usuario"
+                                placeholder="Ingrese usuario"
                                 type="text"
                                 className={(userErr === null) ? "form-control" : (userErr ? "form-control is-invalid" : "form-control is-valid")}
                                 value={form.user}
                                 onChange={handleOnChange}></input>
                             {(userErr === null) ? "ㅤ" : (userErr ? <span className="invalid-feedback">
-                                El usuario debe tener mínimo 6 caracteres</span> : <span
-                                    className="valid-feedback">Cantidad de caracteres validos
+                                Ingrese mínimo 6 caracteres</span> : <span
+                                    className="valid-feedback">6 caracteres ingresados 
                             </span>)}
                         </label>
                     </fieldset>
@@ -134,8 +134,8 @@ export function Login(props: Props) {
                                 onChange={handleOnChange}>
                             </input>
                             {(passwordErr === null) ? "ㅤ" : (passwordErr ? <span
-                                className="invalid-feedback">La contraseña debe tener mínimo 10 caracteres</span> : <span
-                                    className="valid-feedback">Cantidad de caracteres validos</span>)}
+                                className="invalid-feedback">Ingrese mínimo 10 caracteres</span> : <span
+                                    className="valid-feedback">10 caracteres ingresados</span>)}
                         </label>
                     </fieldset>
                 </div>

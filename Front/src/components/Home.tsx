@@ -220,14 +220,24 @@ export default function Home(props: Props) {
                 <div className="midCircle retro" onClick={startGame}> {pattern.length === 0 ? "Start" : "Round " + pattern.length}</div>
             </div>
             <div className="d-flex flex-column min-vh-50 justify-content-center align-items-center retro">{"Your high score: " + userHighScore}</div>
-            <div>
-                <div className="retro">Top 5 best players</div>
-            </div>
-            <div>
-                <div className="divUsers">{topUsers.map(user => { return <div>Rank:{topUsers.indexOf(user)+1}</div> })}</div>
+            <div className="retroContainer retro">
+                <div className="divTittle">
+                    Top 5 best players
 
-                <div className="divUsers">{topUsers.map(user => { return <div>{JSON.stringify(user.user, null, 4)}</div> })}</div>
-                <div className="divHighScores">{topUsers.map(user => { return <div>{JSON.stringify(user.highscore, null, 4)}</div> })}</div>
+                    <div>
+                    <div className="divRank">Rank
+                        <div >{topUsers.map(user => { return <div>{topUsers.indexOf(user) + 1}</div> })}</div>
+                    </div>
+                    <div className="divUsers">User
+                        <div >{topUsers.map(user => { return <div>{JSON.stringify(user.user, null, 4)}</div> })}</div>
+                    </div>
+                    <div className="divHighScores">Score
+                        <div>{topUsers.map(user => { return <div>{JSON.stringify(user.highscore, null, 4)}</div> })}</div>
+
+                    </div>
+                    </div>
+                </div>
+
 
             </div>
 
