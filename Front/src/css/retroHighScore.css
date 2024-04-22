@@ -15,8 +15,6 @@
 .divRank{
     text-align: center;
     vertical-align: middle;
-    font-family: 'Pixel Sans Serif', sans-serif;
-    font-family: 'Pixel Sans Serif Condensed', sans-serif;
     float: left; 
             
 
@@ -24,8 +22,6 @@
 .divUsers {
     text-align: center;
     vertical-align: middle;
-    font-family: 'Pixel Sans Serif', sans-serif;
-    font-family: 'Pixel Sans Serif Condensed', sans-serif;
     flex-direction: column;
     float: left;
 }
@@ -33,8 +29,6 @@
 .divHighScores {
     text-align: center;
     vertical-align: middle;
-    font-family: 'Pixel Sans Serif', sans-serif;
-    font-family: 'Pixel Sans Serif Condensed', sans-serif;
     flex-direction: column;
     float: left;
 }

@@ -13,11 +13,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function App() {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState<Boolean|undefined>(undefined);
 
   useEffect(() => {
     authenticate().then(setIsAuth)
   }, [])
+
+  if(isAuth===undefined){return null}
 
   return (
     <BrowserRouter>
