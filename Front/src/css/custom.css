@@ -1,7 +1,7 @@
 .gameContainer{
   top: 20%;
   left:30%;
-    position: absolute;
+    position: relative;
     display: flex;
     flex-wrap: wrap;
   width:400px;
@@ -69,4 +69,105 @@
 .greenLight{
   background-color: green;
   filter:brightness(100%)
+}
+
+@media(max-width:768px) {
+  .gameContainer{
+    display: flex;
+    flex-wrap: wrap;
+      position: relative;
+    width:400px;
+    height:400px;
+    background-color: wheat;
+    align-items: center;
+    justify-content: center;
+    margin-right: auto;
+  }
+
+  .midCircle{
+    display: flex;
+    float: left;
+   
+  }
+}
+
+@media(max-width:425px){
+  .gameContainer{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+  width:300px;
+  height:300px;
+  background-color: wheat;
+  align-items: center;
+  justify-content: center;
+  margin-right:auto;
+}
+
+.midCircle{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 75px;
+  left: 75px;
+  background-color: black;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+}
+}
+
+@media(max-width:375px){
+  .gameContainer{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+  width:250px;
+  height:250px;
+  background-color: wheat;
+  align-items: center;
+  justify-content: center;
+  margin-right: auto;
+}
+
+.midCircle{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 63.5px;
+  left: 63.5px;
+  background-color: black;
+  border-radius: 50%;
+  height: 125px;
+  width: 125px;
+}
+}
+
+
+@media(max-width:320px){
+  .gameContainer{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+  width:200px;
+  height:200px;
+  background-color: wheat;
+  align-items: center;
+  justify-content: center;
+}
+
+.midCircle{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 45px;
+  left: 45px;
+  background-color: black;
+  border-radius: 50%;
+  height: 110px;
+  width: 110px;
+}
 }

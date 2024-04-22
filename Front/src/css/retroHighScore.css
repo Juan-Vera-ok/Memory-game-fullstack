@@ -4,19 +4,20 @@
     align-items: flex-start;
     text-align: center;
     margin: 16px;
+    width: fit-content;
 }
 
 .divTittle{
     display:flex;
     flex-direction: column;
     text-align: center;
+    border: 30px groove #1C6EA4;
 }
 
 .divRank{
     text-align: center;
     vertical-align: middle;
     float: left; 
-            
 
 }
 .divUsers {
@@ -33,6 +34,68 @@
     float: left;
 }
 
+.divYourHighScore{
+    display: flex;
+    border: 30px groove #1C6EA4;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 *{
     font-family: 'Pixel Sans Serif', sans-serif;
+}
+
+@media(max-width:768px) {
+
+    .retroContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .divTittle{
+        display:flex;
+        flex-direction: column;
+        text-align: center;
+        border: 30px groove #1C6EA4;
+    }
+}
+
+@media(max-width:320px){
+    .retroContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center;
+        margin: 16px;
+    }
+    
+    .divTittle{
+        display:flex;
+        flex-direction: column;
+        text-align: center;
+        border: 30px groove #1C6EA4;
+    }
+    
+    .divRank{
+        text-align: center;
+        vertical-align: middle;
+    
+    }
+    .divUsers {
+        text-align: center;
+        vertical-align: middle;
+        flex-direction: column;
+        width: 89px
+    }
+    
+    .divHighScores {
+        text-align: center;
+        vertical-align: middle;
+        flex-direction: column;
+    }
 }

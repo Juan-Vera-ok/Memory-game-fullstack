@@ -212,14 +212,7 @@ export default function Home(props: Props) {
     return (
         <div >
             <Navbar onLogout={props.onLogout}></Navbar>
-            <div className="gameContainer retro">
-                <div className={(lights.redLight === true) ? "square redLight" : "square red"} onClick={() => { handleOnClick("red") }}></div>
-                <div className={(lights.greenLight === true) ? "square greenLight" : "square green"} onClick={() => { handleOnClick("green") }}></div>
-                <div className={(lights.blueLight === true) ? "square blueLight" : "square blue"} onClick={() => { handleOnClick("blue") }}></div>
-                <div className={(lights.yellowLight === true) ? "square yellowLight" : "square yellow"} onClick={() => { handleOnClick("yellow") }}></div>
-                <div className="midCircle retro" onClick={startGame}> {pattern.length === 0 ? "Start" : "Round " + pattern.length}</div>
-            </div>
-            <div className="d-flex flex-column min-vh-50 justify-content-center align-items-center retro">{"Your high score: " + userHighScore}</div>
+            <div className="divYourHighScore">{"Your high score: " + userHighScore}</div>
             <div className="retroContainer retro">
                 <div className="divTittle">
                     Top 5 best players
@@ -237,9 +230,15 @@ export default function Home(props: Props) {
                     </div>
                     </div>
                 </div>
-
-
             </div>
+            <div className="gameContainer retro">
+                <div className={(lights.redLight === true) ? "square redLight" : "square red"} onClick={() => { handleOnClick("red") }}></div>
+                <div className={(lights.greenLight === true) ? "square greenLight" : "square green"} onClick={() => { handleOnClick("green") }}></div>
+                <div className={(lights.blueLight === true) ? "square blueLight" : "square blue"} onClick={() => { handleOnClick("blue") }}></div>
+                <div className={(lights.yellowLight === true) ? "square yellowLight" : "square yellow"} onClick={() => { handleOnClick("yellow") }}></div>
+                <div className="midCircle retro" onClick={startGame}> {pattern.length === 0 ? "Start" : "Round " + pattern.length}</div>
+            </div>
+            
 
         </div>
     )

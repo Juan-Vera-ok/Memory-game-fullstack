@@ -23,37 +23,11 @@ export default function Navbar(props: Props) {
         </button>
         <div className="navbar-collapse collapse" id="navbarColor02" style={{}}>
           <ul className="navbar-nav me-auto">
-            <li className="nav-item">
-              <Link className="nav-link active" to="/">Home
-                <span className="visually-hidden">(current)</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Features</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Pricing</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">About</a>
-            </li>
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-              <div className="dropdown-menu">
-                <a className="dropdown-item" href="#">Action</a>
-                <a className="dropdown-item" href="#">Another action</a>
-                <a className="dropdown-item" href="#">s</a>
-                <div className="dropdown-divider" />
-                <a className="dropdown-item" href="#">Separated link</a>
-              </div>
-            </li>
           </ul>
           <div >
             <li className="d-flex nav-item dropdown">
-              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Usuario</a>
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
               <div className="dropdown-menu">
-                <a className="dropdown-item" href="#">Mi perfil</a>
-                <a className="dropdown-item" href="#">Configuración</a>
                 <div className="dropdown-divider" />
                 <button className="dropdown-item" onClick={logOut}>Cerrar sesión</button>
               </div>
