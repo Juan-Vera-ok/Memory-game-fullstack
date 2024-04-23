@@ -3,9 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Home from './Home';
 import { Login } from './Login';
 import SignUp from './SignUp';
-import { ProtectedRoute } from './ProtectedRoute';
-import { Buffer } from 'buffer';
-import { ProtectedRouteLogged } from './ProtectedRouteLogged';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
