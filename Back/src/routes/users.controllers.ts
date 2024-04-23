@@ -40,10 +40,7 @@ export const getUsers: RequestHandler = async (req, res) => {
 }
 export const auth: RequestHandler = async (req, res) => {
     try {
-
-        console.log(req.body.data)
         const userFound = await User.findOne({ user: req.body.data.username })
-        console.log("XDDDD" + userFound);
         if (userFound) {
             const correctPassword = await bcryptNow.compare(req.body.data.password, userFound?.passwordHashed)
 
@@ -56,7 +53,6 @@ export const auth: RequestHandler = async (req, res) => {
 
         }
         if (!userFound) {
-            console.log("SSSSSSSSSSSSSSSSSSS")
             res.json(301)
         }
 

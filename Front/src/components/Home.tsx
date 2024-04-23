@@ -47,7 +47,6 @@ export default function Home(props: Props) {
 
     const checkPattern = async (userPattern: number[]) => {
         let lost = false
-        console.log({ pattern, userPattern })
         for (let i = 0; i < userPattern.length; i++) {
             if (pattern[i] != userPattern[i]) {
                 lost = true
@@ -83,7 +82,6 @@ export default function Home(props: Props) {
 
     const showPattern = async (pattern: number[]) => {
         setisPlaying(false)
-        console.log("AAAAAAAAAAAAA", pattern)
         for (const element of pattern) {
             if (element === 1) {
                 sounds.red.play()
@@ -123,7 +121,6 @@ export default function Home(props: Props) {
             }
         };
         setisPlaying(true)
-        console.log(pattern + " pattern POSTA")
     }
 
     const handleOnClick = async (color: "red" | "green" | "blue" | "yellow") => {
@@ -183,7 +180,6 @@ export default function Home(props: Props) {
         }
         await checkPattern(newUserPattern);
 
-        console.log(userPattern + " el Pattern del usuario")
     }
 
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Link, Navigate, useNavigate } from "react-router-dom"
 import axios from "axios";
-import loginHandler from "../api/auth/login";
 import { toast } from "react-toastify";
 
 
@@ -23,7 +22,6 @@ export function Login(props: Props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log("FORMULARIO" + form.user + form.password);
         const config = {
             data: {
                 username: form.user,
@@ -31,17 +29,9 @@ export function Login(props: Props) {
             },
         };
 
-        console.log(config)
         try {
-            console.log("TRY")
             const userIdResponse = await axios.post('http://localhost:3000/userAuth', config, { withCredentials: true });
-            console.log("DDDDD" + userIdResponse);
-
-
-            console.log("ssss" + userIdResponse);
-
             if (userIdResponse.data === 200) {
-                console.log("Loggeado");
                 let isAuth = true;
                 props.onLogin();
                 navigate("/");
@@ -114,7 +104,7 @@ export function Login(props: Props) {
                                 value={form.user}
                                 onChange={handleOnChange}></input>
                             {(userErr === null) ? "ㅤ" : (userErr ? <span className="invalid-feedback">
-                                Ingrese mínimo 6 caracteres</span> : <span
+                                Mínimo 6 caracteres</span> : <span
                                     className="valid-feedback">6 caracteres ingresados 
                             </span>)}
                         </label>
@@ -134,7 +124,7 @@ export function Login(props: Props) {
                                 onChange={handleOnChange}>
                             </input>
                             {(passwordErr === null) ? "ㅤ" : (passwordErr ? <span
-                                className="invalid-feedback">Ingrese mínimo 10 caracteres</span> : <span
+                                className="invalid-feedback">Mínimo 10 caracteres</span> : <span
                                     className="valid-feedback">10 caracteres ingresados</span>)}
                         </label>
                     </fieldset>
