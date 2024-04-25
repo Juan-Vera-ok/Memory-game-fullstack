@@ -30,7 +30,7 @@ export function Login(props: Props) {
         };
 
         try {
-            const userIdResponse = await axios.post('http://localhost:3000/userAuth', config, { withCredentials: true });
+            const userIdResponse = await axios.post(BACKEND_URL+'/userAuth', config, { withCredentials: true });
             if (userIdResponse.data === 200) {
                 let isAuth = true;
                 props.onLogin();

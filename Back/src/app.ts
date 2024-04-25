@@ -14,13 +14,8 @@ app.set('PORT',config.PORT)
 app.use(cookieParser())
 
 app.use(morgan('dev'));
-const corsOptions ={
-    origin:'http://localhost:4000', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
-    
-}
-app.use(cors(corsOptions));
+
+app.use(cors());
 
 
 

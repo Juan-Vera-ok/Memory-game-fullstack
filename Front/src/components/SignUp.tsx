@@ -123,7 +123,7 @@ export default function SignUp(){
 
         const handleSignUpButton = async() =>{
             try {
-                const response = await axios.post('http://localhost:3000/user',signUp);
+                const response = await axios.post(BACKEND_URL+'/user',signUp);
                 if(response.status==200){
                     toast.success("Usuario creado");
                     navigate("/login");

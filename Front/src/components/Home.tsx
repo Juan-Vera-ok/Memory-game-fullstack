@@ -2,9 +2,11 @@ import React, { ReactNode, useEffect, useState } from "react"
 import Navbar from "./Navbar"
 import "../css/custom.css"
 import "../css/retroHighScore.css"
-import { start } from "@popperjs/core";
 import axios from "axios";
-import { json } from "react-router-dom";
+
+declare global{
+    const BACKEND_URL: string
+}
 
 interface Props {
     onLogout: () => void;
@@ -70,7 +72,7 @@ export default function Home(props: Props) {
                 if (userPattern.length > userHighScore) {
                     const newUserHighScore = userHighScore + 1;
                     setUserHighScore(newUserHighScore)
-                    const response = axios.post('http://localhost:3000/update-highscore', { newUserHighScore }, { withCredentials: true })
+                    const response = axios.post(BACKEND_URL+'/update-highscore', { newUserHighScore }, { withCredentials: true })
 
 
                 }
@@ -193,9 +195,9 @@ export default function Home(props: Props) {
     };
 
     useEffect(() => {
-        const promiseUser = axios.get('http://localhost:3000/users')
+        const promiseUser = axios.get(BACKEND_URL+'/users')
         promiseUser.then((users) => { setTopUsers(users.data) })
-        const promiseHighScore = axios.post('http://localhost:3000/highScore-current-user', {}, { withCredentials: true })
+        const promiseHighScore = axios.post(BACKEND_URL+'/highScore-current-user', {}, { withCredentials: true })
         promiseHighScore.then((highscore) => {
             setUserHighScore(highscore.data)
 
