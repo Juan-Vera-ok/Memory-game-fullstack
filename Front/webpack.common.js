@@ -49,10 +49,13 @@ const config = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'src/index.html')
+        }),
         new webpack.DefinePlugin({
             'BACKEND_URL': JSON.stringify(process.env.BACKEND_URL||"http://localhost:4000"),
-        })
+        }),
+        
     ],
 
 
