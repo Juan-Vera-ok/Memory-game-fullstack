@@ -24,6 +24,7 @@ app.use(morgan('dev'));
 
 const corsOptions ={
     origin:'https://memory-game-client.onrender.com',
+    methods: "GET,PUT,POST,DELETE",
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
