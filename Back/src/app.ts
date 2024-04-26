@@ -16,7 +16,8 @@ app.use(cookieParser())
 app.use(morgan('dev'));
 
 const corsOptions ={
-    origin:'*', 
+    origin:'*',
+    credentials:false
 }
 app.use(cors(corsOptions));
 
