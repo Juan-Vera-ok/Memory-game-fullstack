@@ -7,7 +7,7 @@ import config from "./config";
             user:config.MONGO_USER,
             pass:config.MONGO_PASSWORD
         }
-        const db = await mongoose.connect(`mongodb+srv://juanvera2001:${config.MONGO_PASSWORD}@memorygame.ecyzp37.mongodb.net/?retryWrites=true&w=majority&appName=MemoryGame${config.MONGO_HOST}:${config.MONGO_PORT}/${config.MONGO_DATABASE}`,mongooseOption)
+        const db = await mongoose.connect(`mongodb+srv://juanvera2001:${config.MONGO_PASSWORD}@memorygame.ecyzp37.mongodb.net/?retryWrites=true&w=majority&appName=MemoryGame`,mongooseOption)
         console.log('Database is connected to',db.connection.name)
     } catch (error) {
         console.log(error)
