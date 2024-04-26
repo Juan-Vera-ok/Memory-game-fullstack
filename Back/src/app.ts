@@ -16,8 +16,7 @@ app.use(cookieParser())
 app.use(morgan('dev'));
 
 const corsOptions ={
-    origin:'*',
-    credentials:false
+    origin:'https://memory-game-client.onrender.com'
 }
 app.use(cors(corsOptions));
 
