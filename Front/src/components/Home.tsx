@@ -73,7 +73,7 @@ export default function Home(props: Props) {
                     const newUserHighScore = userHighScore + 1;
                     setUserHighScore(newUserHighScore)
                     const response = axios.post(BACKEND_URL+'/update-highscore', { newUserHighScore }, { withCredentials: true,headers: {
-                        'Access-Control-Allow-Origin': '/\memory-game-client\.onrender\.com$/', 
+                        'Access-Control-Allow-Origin': '*', 
                         'Content-Type': 'application/json'
                     } })
 
@@ -201,7 +201,7 @@ export default function Home(props: Props) {
         const promiseUser = axios.get(BACKEND_URL+'/users')
         promiseUser.then((users) => { setTopUsers(users.data) })
         const promiseHighScore = axios.post(BACKEND_URL+'/highScore-current-user', {}, { withCredentials: true,headers: {
-            'Access-Control-Allow-Origin': '/\memory-game-client\.onrender\.com$/', 
+            'Access-Control-Allow-Origin': '*', 
             'Content-Type': 'application/json'
         } })
         promiseHighScore.then((highscore) => {
