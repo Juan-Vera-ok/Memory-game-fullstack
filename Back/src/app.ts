@@ -16,7 +16,7 @@ app.use(cookieParser())
 app.use(morgan('dev'));
 
 app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', ['https://memory-game-client.onrender.com','https://memory-game-client.onrender.com/','memory-game-client.onrender.com/:[0-9]+']);
+  res.header('Access-Control-Allow-Origin', '/\memory-game-client\.onrender\.com$/');
   res.header('Access-Control-Allow-Credentials', "true");
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
@@ -24,7 +24,7 @@ app.use(function(req, res, next) {
 
 
 const corsOptions ={
-    origin:['https://memory-game-client.onrender.com','https://memory-game-client.onrender.com/','memory-game-client.onrender.com/:[0-9]+'],
+    origin:'/\memory-game-client\.onrender\.com$/',
     methods: "GET,PUT,POST,DELETE",
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
