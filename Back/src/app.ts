@@ -55,7 +55,7 @@ app.use((req, res, next) => {
 let Regex = RegExp(/^https:\/\/memory-game-client\.onrender\.com\/:[0-9]+$/i);
 
 const corsOptions = {
-  origin: Regex,
+  origin: [Regex,"https://memory-game-client.onrender.com"],
   methods: ["GET", "PUT", "POST", "DELETE"],
   credentials: true,            //access-control-allow-credentials:true,
   optionSuccessStatus: 200,
