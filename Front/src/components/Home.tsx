@@ -75,7 +75,8 @@ export default function Home(props: Props) {
                     const response = axios.post(BACKEND_URL+'/update-highscore', { newUserHighScore }, { withCredentials: true,headers: {
                         'Access-Control-Allow-Origin': 'true',
                         'Access-Control-Allow-Credentials': 'true',  
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Headers': '*'
                     } })
 
 
@@ -204,7 +205,8 @@ export default function Home(props: Props) {
         const promiseHighScore = axios.post(BACKEND_URL+'/highScore-current-user', {}, { withCredentials: true,headers: {
             'Access-Control-Allow-Origin': 'true',
             'Access-Control-Allow-Credentials': 'true', 
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Headers': '*'
         } })
         promiseHighScore.then((highscore) => {
             setUserHighScore(highscore.data)
