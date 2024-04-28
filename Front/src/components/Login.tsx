@@ -33,9 +33,9 @@ export function Login(props: Props) {
             const userIdResponse = await axios.post(BACKEND_URL+'/userAuth', config, {
                 withCredentials:true,
                 headers: {
-                'Access-Control-Allow-Origin': 'true',
+                'Access-Control-Allow-Origin': 'https://memory-game-client.onrender.com',
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Headers': 'true'
+                'Access-Control-Allow-Headers': '*'
             }
             });     
             if (userIdResponse.data === 200) {

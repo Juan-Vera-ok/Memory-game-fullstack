@@ -76,9 +76,9 @@ export default function Home(props: Props) {
                     { 
                         withCredentials:true,
                         headers: {
-                        "Access-Control-Allow-Origin": "true",
+                        "Access-Control-Allow-Origin": "https://memory-game-client.onrender.com",
                         "Content-Type": "application/json",
-                        "Access-Control-Allow-Headers": "true",
+                        "Access-Control-Allow-Headers": "*",
                     } })
 
 
@@ -207,9 +207,9 @@ export default function Home(props: Props) {
         const promiseHighScore = axios.post(BACKEND_URL+'/highScore-current-user', {}, { 
             withCredentials:true,
             headers: {
-            'Access-Control-Allow-Origin': 'true',
+            'Access-Control-Allow-Origin': 'https://memory-game-client.onrender.com',
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Headers': 'true'
+            'Access-Control-Allow-Headers': '*'
         } })
         promiseHighScore.then((highscore) => {
             setUserHighScore(highscore.data)
