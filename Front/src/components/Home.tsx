@@ -72,7 +72,7 @@ export default function Home(props: Props) {
                 if (userPattern.length > userHighScore) {
                     const newUserHighScore = userHighScore + 1;
                     setUserHighScore(newUserHighScore)
-                    const response = axios.post(BACKEND_URL+'/update-highscore', { newUserHighScore }, 
+                    const response = axios.post(`${BACKEND_URL}/update-highscore`, { newUserHighScore }, 
                     { 
                         withCredentials:true,
                         headers: {
