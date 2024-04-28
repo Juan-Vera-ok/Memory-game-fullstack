@@ -45,7 +45,7 @@ let Regex = RegExp(/[0-9]+/i);
 
 var whitelist = ["https://memory-game-client.onrender.com",
 "https://memory-game-client.onrender.com/",
-"memory-game-client.onrender.com/:1"]
+"https://memory-game-client.onrender.com/:1"]
 
 const corsOptions = {
   origin: function(origin:any, callback:any) {
