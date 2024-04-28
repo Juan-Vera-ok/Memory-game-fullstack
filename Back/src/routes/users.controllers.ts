@@ -74,6 +74,7 @@ export const updateUser: RequestHandler = async (req, res) => {
 }
 
 export const updateHighScore: RequestHandler = async (req, res) => {
+console.log(req.cookies.token)
     const tokenPromise = verifyToken(req.cookies.token)
     tokenPromise.then(async (_id) => {
         const user = await User.findById(_id);
