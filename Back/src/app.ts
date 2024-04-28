@@ -52,7 +52,7 @@ app.use((req, res, next) => {
 });
 */
 
-let Regex = RegExp(/^https:\/\/memory-game-client\.onrender\.com\/:[0-9]+$/i);
+let Regex = RegExp(/https:\/\/memory-game-client\.onrender\.com\/:\d/i);
 
 const corsOptions = {
   origin: [Regex,"https://memory-game-client.onrender.com"],
