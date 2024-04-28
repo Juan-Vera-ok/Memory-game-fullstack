@@ -6,12 +6,12 @@ import config from './config'
 import userRoutes from './routes/user.routes'
 import cookieParser from "cookie-parser"
 import { access } from 'fs'
-const app = express ()
+const app = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.set('PORT',config.PORT)
+app.set('PORT', config.PORT)
 app.use(cookieParser())
 
 app.use(morgan('dev'));
@@ -47,19 +47,20 @@ app.use((req, res, next) => {
 
 
 
-const corsOptions ={
-    origin:['https://memory-game-client.onrender.com/login',
+const corsOptions = {
+  origin: ['https://memory-game-client.onrender.com/login',
     'https://memory-game-client.onrender.com/',
     'https://memory-game-client.onrender.com/sign-up',
     'https://memory-game-client.onrender.com',
-    'https://memory-game-client.onrender.com/:1'],
-    methods: ["GET","PUT","POST","DELETE"],
-    credentials:true,            //access-control-allow-credentials:true,
-    optionSuccessStatus:200,
-    allowedHeaders: ["Access-Control-Allow-Origin","Access-Control-Allow-Credentials"]
-    
+    'https://memory-game-client.onrender.com/:1',
+    'memory-game-client.onrender.com/:1'],
+  methods: ["GET", "PUT", "POST", "DELETE"],
+  credentials: true,            //access-control-allow-credentials:true,
+  optionSuccessStatus: 200,
+  allowedHeaders: ["Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"]
+
 }
-app.use(cors(corsOptions)); 
+app.use(cors(corsOptions));
 
 app.use(userRoutes)
 
