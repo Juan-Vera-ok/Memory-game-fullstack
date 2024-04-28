@@ -45,12 +45,12 @@ let Regex = RegExp(/[0-9]+/i);
 
 var whitelist = ["https://memory-game-client.onrender.com",
 "https://memory-game-client.onrender.com/",
-"memory-game-client.onrender.com/:1",undefined]
+"memory-game-client.onrender.com/:1"]
 
 const corsOptions = {
   origin: function(origin:any, callback:any) {
     console.log(origin)
-    if (whitelist.indexOf(origin) !== -1) {
+    if (whitelist.indexOf(origin) !== -1|| !origin) {
       callback(null, true)
     } else {
       callback(new Error('Not allowed by CORS'))
