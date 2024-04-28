@@ -16,13 +16,14 @@ app.use(cookieParser())
 
 app.use(morgan('dev'));
 
+/*
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin","https://memory-game-client.onrender.com"
   );
-  /*res.setHeader(
+  res.setHeader(
     "Access-Control-Allow-Origin","https://memory-game-client.onrender.com/:1"
-  );*/
+  );
   res.setHeader(
     "Access-Control-Allow-Methods",
     ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS", "CONNECT", "TRACE"]
@@ -38,20 +39,27 @@ app.use((req, res, next) => {
 
   next();
 });
-
+*/
 
 let Regex = RegExp(/[0-9]+/i);
-/*
+
+var whitelist = ["https://memory-game-client.onrender.com",
+"https://memory-game-client.onrender.com/",
+"memory-game-client.onrender.com/:1"]
+
 const corsOptions = {
-  origin: ["https://memory-game-client.onrender.com",
-  "https://memory-game-client.onrender.com/",
-"memory-game-client.onrender.com/:1"],
+  origin: function(origin:any, callback:any) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }},
   methods: ["GET", "PUT", "POST", "DELETE"],
   credentials: true,            //access-control-allow-credentials:true,
   optionSuccessStatus: 200,
   allowedHeaders: 'Content-Type'}
 app.use(cors(corsOptions));
-*/
+
 app.use(userRoutes)
 
 export default app
