@@ -5,6 +5,7 @@ import cors from 'cors'
 import config from './config'
 import userRoutes from './routes/user.routes'
 import cookieParser from "cookie-parser"
+import { access } from 'fs'
 const app = express ()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -52,9 +53,11 @@ const corsOptions ={
     'https://memory-game-client.onrender.com/sign-up',
     'https://memory-game-client.onrender.com',
     'https://memory-game-client.onrender.com/:1'],
-    methods: "GET,PUT,POST,DELETE",
+    methods: ["GET","PUT","POST","DELETE"],
     credentials:true,            //access-control-allow-credentials:true,
-    optionSuccessStatus:200
+    optionSuccessStatus:200,
+    allowedHeaders: ["Access-Control-Allow-Origin","Access-Control-Allow-Credentials"]
+    
 }
 app.use(cors(corsOptions)); 
 
