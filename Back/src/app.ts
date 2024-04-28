@@ -55,7 +55,7 @@ const corsOptions = {
   'https://memory-game-client.onrender.com/:1',
   'memory-game-client.onrender.com/:1'],
   methods: ["GET", "PUT", "POST", "DELETE"],
-  credentials: false,            //access-control-allow-credentials:true,
+  credentials: true,            //access-control-allow-credentials:true,
   optionSuccessStatus: 200,
   allowedHeaders: ["Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"]
 
