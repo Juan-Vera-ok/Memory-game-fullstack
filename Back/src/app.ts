@@ -48,7 +48,9 @@ app.use(function(req, res, next) {
   next();
 });
 
-
+app.use(cors({
+  origin: 'https://memory-game-client.onrender.com'
+}));
 let Regex = RegExp(/[0-9]+/i);
 
 var whitelist = ["https://memory-game-client.onrender.com",
