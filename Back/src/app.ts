@@ -48,12 +48,7 @@ app.use((req, res, next) => {
 
 
 const corsOptions = {
-  origin: ['https://memory-game-client.onrender.com/login',
-    'https://memory-game-client.onrender.com/',
-    'https://memory-game-client.onrender.com/sign-up',
-    'https://memory-game-client.onrender.com',
-    'https://memory-game-client.onrender.com/:1',
-    'memory-game-client.onrender.com/:1'],
+  origin: "*",
   methods: ["GET", "PUT", "POST", "DELETE"],
   credentials: true,            //access-control-allow-credentials:true,
   optionSuccessStatus: 200,
