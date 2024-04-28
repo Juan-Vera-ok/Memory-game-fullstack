@@ -41,12 +41,19 @@ app.use((req, res, next) => {
 });
 */
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://memory-game-client.onrender.com");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+
 let Regex = RegExp(/[0-9]+/i);
 
 var whitelist = ["https://memory-game-client.onrender.com",
 "https://memory-game-client.onrender.com/",
 "https://memory-game-client.onrender.com/:1"]
-
+/*
 const corsOptions = {
   origin: function(origin:any, callback:any) {
     if (whitelist.includes(origin)|| !origin) {
@@ -62,7 +69,7 @@ const corsOptions = {
   optionSuccessStatus: 200,
   allowedHeaders: '*'}
 app.use(cors(corsOptions));
-
+*/
 app.use(userRoutes)
 
 export default app
