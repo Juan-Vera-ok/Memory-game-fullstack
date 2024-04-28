@@ -49,7 +49,7 @@ var whitelist = ["https://memory-game-client.onrender.com",
 
 const corsOptions = {
   origin: function(origin:any, callback:any) {
-    if (whitelist.indexOf(origin) !== -1|| !origin) {
+    if (whitelist.includes(origin)|| !origin) {
       callback(null, true)
     } else {
       callback(new Error('Not allowed by CORS'))
