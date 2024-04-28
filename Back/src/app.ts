@@ -18,14 +18,7 @@ app.use(morgan('dev'));
 
 app.use((req, res, next) => {
   res.setHeader(
-    "Access-Control-Allow-Origin",
-    ['https://memory-game-client.onrender.com/login',
-      'https://memory-game-client.onrender.com/',
-      'https://memory-game-client.onrender.com/sign-up',
-      'https://memory-game-client.onrender.com',
-      'https://memory-game-client.onrender.com/:1',
-      'memory-game-client.onrender.com/:1']
-
+    "Access-Control-Allow-Origin","https://memory-game-client.onrender.com"
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
