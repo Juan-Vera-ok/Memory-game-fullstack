@@ -20,9 +20,9 @@ app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin","https://memory-game-client.onrender.com"
   );
-  res.setHeader(
+  /*res.setHeader(
     "Access-Control-Allow-Origin","https://memory-game-client.onrender.com/:1"
-  );
+  );*/
   res.setHeader(
     "Access-Control-Allow-Methods",
     ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS", "CONNECT", "TRACE"]
