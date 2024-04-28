@@ -51,7 +51,7 @@ const corsOptions ={
     'https://memory-game-client.onrender.com/',
     'https://memory-game-client.onrender.com/sign-up',
     'https://memory-game-client.onrender.com',
-    'https://memory-game-client.onrender.com/:\d'],
+    'https://memory-game-client.onrender.com/:1'],
     methods: "GET,PUT,POST,DELETE",
     credentials:true,            //access-control-allow-credentials:true,
     optionSuccessStatus:200
