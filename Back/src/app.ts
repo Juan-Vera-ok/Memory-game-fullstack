@@ -42,7 +42,6 @@ app.use((req, res, next) => {
 */
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://memory-game-client.onrender.com");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Credentials", "true"); // Añadir este encabezado
   next();
