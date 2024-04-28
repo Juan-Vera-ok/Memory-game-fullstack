@@ -8,7 +8,14 @@ router.get('/users', userController.getUsers);
 router.post('/userAuth', userController.auth);
 router.delete('/user/:id', userController.deleteUser);
 router.put('/user/:id', userController.updateUser);
-router.post('/update-highscore',userController.updateHighScore);
+router.post('/update-highscore', (req, res,next) => {
+    // Lógica para manejar la solicitud
+    // Por ejemplo, puedes llamar a la función del controlador
+    userController.updateHighScore(req, res,next);
+  
+    // Agregar el encabezado Access-Control-Allow-Headers en la respuesta
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  });
 router.post('/highScore-current-user',userController.highScoreOfCurrentUser)
 
 export default router
