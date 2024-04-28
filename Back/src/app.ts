@@ -28,20 +28,20 @@ app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
     ['https://memory-game-client.onrender.com/login',
-  'https://memory-game-client.onrender.com/',
-  'https://memory-game-client.onrender.com/sign-up',
-  'https://memory-game-client.onrender.com',
-  'https://memory-game-client.onrender.com/:1',
-  'memory-game-client.onrender.com/:1']
-    
+      'https://memory-game-client.onrender.com/',
+      'https://memory-game-client.onrender.com/sign-up',
+      'https://memory-game-client.onrender.com',
+      'https://memory-game-client.onrender.com/:1',
+      'memory-game-client.onrender.com/:1']
+
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
+    ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS", "CONNECT", "TRACE"]
   );
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+    ["Content-Type", "Authorization", "X-Content-Type-Options", "Accept", "X-Requested-With", "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"]
   );
   res.setHeader("Access-Control-Allow-Credentials", 'true');
   res.setHeader("Access-Control-Allow-Private-Network", 'true');
@@ -55,11 +55,11 @@ app.use((req, res, next) => {
 
 const corsOptions = {
   origin: ['https://memory-game-client.onrender.com/login',
-  'https://memory-game-client.onrender.com/',
-  'https://memory-game-client.onrender.com/sign-up',
-  'https://memory-game-client.onrender.com',
-  'https://memory-game-client.onrender.com/:1',
-  'memory-game-client.onrender.com/:1'],
+    'https://memory-game-client.onrender.com/',
+    'https://memory-game-client.onrender.com/sign-up',
+    'https://memory-game-client.onrender.com',
+    'https://memory-game-client.onrender.com/:1',
+    'memory-game-client.onrender.com/:1'],
   methods: ["GET", "PUT", "POST", "DELETE"],
   credentials: true,            //access-control-allow-credentials:true,
   optionSuccessStatus: 200,

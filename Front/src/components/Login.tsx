@@ -36,7 +36,7 @@ export function Login(props: Props) {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Headers': 'true'
             }
-            });
+            });     
             if (userIdResponse.data === 200) {
                 let isAuth = true;
                 props.onLogin();
