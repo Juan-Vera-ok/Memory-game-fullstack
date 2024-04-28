@@ -35,7 +35,7 @@ export function Login(props: Props) {
                 'Access-Control-Allow-Origin': 'true',
                 'Access-Control-Allow-Credentials': 'true',  
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Headers': '*'
+                'Access-Control-Allow-Headers': 'true'
             }
             });
             if (userIdResponse.data === 200) {

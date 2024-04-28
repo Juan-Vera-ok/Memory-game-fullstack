@@ -76,7 +76,7 @@ export default function Home(props: Props) {
                         'Access-Control-Allow-Origin': 'true',
                         'Access-Control-Allow-Credentials': 'true',  
                         'Content-Type': 'application/json',
-                        'Access-Control-Allow-Headers': '*'
+                        'Access-Control-Allow-Headers': 'true'
                     } })
 
 
@@ -206,7 +206,7 @@ export default function Home(props: Props) {
             'Access-Control-Allow-Origin': 'true',
             'Access-Control-Allow-Credentials': 'true', 
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Headers': '*'
+            'Access-Control-Allow-Headers': 'true'
         } })
         promiseHighScore.then((highscore) => {
             setUserHighScore(highscore.data)
