@@ -41,14 +41,9 @@ app.use((req, res, next) => {
 });
 */
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Credentials", "true"); // Añadir este encabezado
-  next();
-});
-
 app.use(cors({
-  origin: 'https://memory-game-client.onrender.com'
+  origin: 'https://memory-game-client.onrender.com',
+  credentials:true
 }));
 let Regex = RegExp(/[0-9]+/i);
 
