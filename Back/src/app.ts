@@ -50,7 +50,7 @@ app.use((req, res, next) => {
 const corsOptions = {
   origin: "*",
   methods: ["GET", "PUT", "POST", "DELETE"],
-  credentials: true,            //access-control-allow-credentials:true,
+  credentials: false,            //access-control-allow-credentials:true,
   optionSuccessStatus: 200,
   allowedHeaders: ["Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"]
 
