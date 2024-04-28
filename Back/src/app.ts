@@ -23,6 +23,29 @@ app.use(morgan('dev'));
 });
 */
 
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://memory-game-client.onrender.com/"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", 'true');
+  res.setHeader("Access-Control-Allow-Private-Network", 'true');
+  //  Firefox caps this at 24 hours (86400 seconds). Chromium (starting in v76) caps at 2 hours (7200 seconds). The default value is 5 seconds.
+  res.setHeader("Access-Control-Max-Age", 7200);
+
+  next();
+});
+
+
+/*
 const corsOptions ={
     origin:['https://memory-game-client.onrender.com/login',
     'https://memory-game-client.onrender.com/',
@@ -30,10 +53,10 @@ const corsOptions ={
     'https://memory-game-client.onrender.com',
     'https://memory-game-client.onrender.com/:\d'],
     methods: "GET,PUT,POST,DELETE",
-    credentials:true,            //access-control-allow-credentials:true
+    credentials:true,            //access-control-allow-credentials:true,
     optionSuccessStatus:200
 }
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); */
 
 app.use(userRoutes)
 
