@@ -41,7 +41,7 @@ app.use((req, res, next) => {
   );
   res.setHeader(
     "Access-Control-Allow-Headers",
-    ["Content-Type", "Authorization", "X-Content-Type-Options", "Accept", "X-Requested-With", "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"]
+    ["Access-Control-Allow-Origin","Content-Type", "Authorization", "X-Content-Type-Options", "Accept", "X-Requested-With", "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"]
   );
   res.setHeader("Access-Control-Allow-Credentials", 'true');
   res.setHeader("Access-Control-Allow-Private-Network", 'true');
