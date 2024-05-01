@@ -53,7 +53,9 @@ app.use(cors({
   credentials: true,
   allowedHeaders: ["Content-Type",
   "Authorization",
-  "Access-Control-Allow-Origin"]
+  "Access-Control-Allow-Origin"],
+  preflightContinue:true,
+  optionsSuccessStatus: 204
 }));
 let Regex = RegExp(/[0-9]+/i);
 
