@@ -77,6 +77,7 @@ export default function Home(props: Props) {
                         withCredentials:true,
                         headers: {
                         "Content-Type": "application/json",
+                        "Authorization": "Basic " 
                     } })
 
 
@@ -205,8 +206,9 @@ export default function Home(props: Props) {
         const promiseHighScore = axios.post(BACKEND_URL+'/highScore-current-user', {}, { 
             withCredentials:true,
             headers: {
-            'Content-Type': 'application/json',
-        } })
+                "Content-Type": "application/json",
+                "Authorization": "Basic " 
+            }  })
         promiseHighScore.then((highscore) => {
             setUserHighScore(highscore.data)
 

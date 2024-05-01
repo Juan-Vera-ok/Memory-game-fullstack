@@ -43,7 +43,8 @@ app.use((req, res, next) => {
 
 app.use(cors({
   origin: 'https://memory-game-client.onrender.com',
-  credentials:true
+  credentials:true,
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 let Regex = RegExp(/[0-9]+/i);
 
