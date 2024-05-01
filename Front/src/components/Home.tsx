@@ -77,7 +77,9 @@ export default function Home(props: Props) {
                         withCredentials:true,
                         headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Basic " 
+                        "Authorization": "Basic ",
+                        "Access-Control-Allow-Origin":"true"
+
                     } })
 
 
@@ -207,7 +209,8 @@ export default function Home(props: Props) {
             withCredentials:true,
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Basic " 
+                "Authorization": "Basic " ,
+                "Access-Control-Allow-Origin":"true"
             }  })
         promiseHighScore.then((highscore) => {
             setUserHighScore(highscore.data)
