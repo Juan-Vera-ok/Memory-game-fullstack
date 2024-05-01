@@ -16,6 +16,13 @@ app.use(cookieParser())
 
 app.use(morgan('dev'));
 
+
+app.use((req,res,next)=>{
+  res.setHeader(
+    "Access-Control-Allow-Origin","https://memory-game-client.onrender.com"
+  );
+})
+
 /*
 app.use((req, res, next) => {
   res.setHeader(
@@ -42,7 +49,6 @@ app.use((req, res, next) => {
 */
 
 app.use(cors({
-  origin: 'https://memory-game-client.onrender.com',
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization", "Access-Control-Allow-Origin"],
   preflightContinue: true,
