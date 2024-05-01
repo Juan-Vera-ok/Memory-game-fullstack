@@ -17,11 +17,11 @@ app.use(cookieParser())
 app.use(morgan('dev'));
 
 
-app.use((req,res,next)=>{
+/*app.use((req,res,next)=>{
   res.setHeader(
     "Access-Control-Allow-Origin","https://memory-game-client.onrender.com"
   );
-})
+})*/
 
 /*
 app.use((req, res, next) => {
@@ -49,10 +49,8 @@ app.use((req, res, next) => {
 */
 
 app.use(cors({
+  origin: "https://memory-game-client.onrender.com",
   credentials: true,
-  allowedHeaders: ["Content-Type", "Authorization", "Access-Control-Allow-Origin"],
-  preflightContinue: true,
-  optionsSuccessStatus: 200
 }));
 let Regex = RegExp(/[0-9]+/i);
 
