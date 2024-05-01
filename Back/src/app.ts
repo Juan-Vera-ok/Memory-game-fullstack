@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 */
 
 app.use(cors({
-  origin: "https://memory-game-client.onrender.com",
+  origin: "memory-game-client.onrender.com",
   credentials: true,
   allowedHeaders: ["Content-Type",
   "Authorization",
