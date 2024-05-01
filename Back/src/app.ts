@@ -7,6 +7,10 @@ import userRoutes from './routes/user.routes'
 import cookieParser from "cookie-parser"
 import { access } from 'fs'
 const app = express()
+app.use(cors({
+  origin: true,
+  credentials: true,
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -48,16 +52,7 @@ app.use((req, res, next) => {
 });
 */
 
-app.use(cors({
-  origin: true,
-  credentials: true,
-  allowedHeaders: ["Content-Type",
-  "Authorization",
-  "Access-Control-Allow-Origin"],
-  methods: ["GET","HEAD","PUT","PATCH","POST","DELETE","OPTIONS"],
-  preflightContinue:true,
-  optionsSuccessStatus: 204
-}));
+
 let Regex = RegExp(/[0-9]+/i);
 
 var whitelist = ["https://memory-game-client.onrender.com",
