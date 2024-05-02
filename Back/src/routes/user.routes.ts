@@ -12,6 +12,8 @@ router.post('/update-highscore',cors({origin:"https://memory-game-client.onrende
   credentials:true
 }),userController.updateHighScore
  );
-router.post('/highScore-current-user',userController.highScoreOfCurrentUser)
+router.post('/highScore-current-user',cors({origin:"https://memory-game-client.onrender.com",
+credentials:true
+}),userController.highScoreOfCurrentUser)
 
 export default router
