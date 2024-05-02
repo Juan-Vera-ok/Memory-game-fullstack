@@ -7,13 +7,13 @@ import userRoutes from './routes/user.routes'
 import cookieParser from "cookie-parser"
 import { access } from 'fs'
 const app = express()
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', ['https://memory-game-client.onrender.com','https://memory-game-fullstack.onrender.com/update-highscore']);
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.header('Access-Control-Allow-Credentials','true')
   next();
-});
+});*/
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }))
