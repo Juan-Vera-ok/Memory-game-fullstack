@@ -12,6 +12,8 @@ app.use(cors({
   "https://memory-game-client.onrender.com/",
   "https://memory-game-client.onrender.com/:1"],
   credentials: true,
+  preflightContinue: true,
+  optionsSuccessStatus: 200
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
