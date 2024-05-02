@@ -7,14 +7,12 @@ import userRoutes from './routes/user.routes'
 import cookieParser from "cookie-parser"
 import { access } from 'fs'
 const app = express()
-app.use(cors({
-  origin: ["https://memory-game-client.onrender.com",
-  "https://memory-game-client.onrender.com/",
-  "https://memory-game-client.onrender.com/:1"],
-  credentials: true,
-  preflightContinue: true,
-  optionsSuccessStatus: 200
-}));
+app.use((req, res, next) => {
+  res.append('Access-Control-Allow-Origin', ['https://memory-game-client.onrender.com']);
+  res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.append('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }))
