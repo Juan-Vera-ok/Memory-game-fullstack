@@ -31,7 +31,7 @@ export function Login(props: Props) {
 
         try {
             const userIdResponse = await axios.post(BACKEND_URL+'/userAuth', config, {
-                withCredentials:false,
+                withCredentials:true,
                 headers: {
                 'Content-Type': 'application/json',
             }

@@ -74,7 +74,7 @@ export default function Home(props: Props) {
                     setUserHighScore(newUserHighScore)
                     const response = axios.post(`${BACKEND_URL}/update-highscore`, { newUserHighScore }, 
                     { 
-                        withCredentials:false,
+                        withCredentials:true,
                          })
 
 
@@ -201,7 +201,7 @@ export default function Home(props: Props) {
         const promiseUser = axios.get(BACKEND_URL+'/users')
         promiseUser.then((users) => { setTopUsers(users.data) })
         const promiseHighScore = axios.post(BACKEND_URL+'/highScore-current-user', {}, { 
-            withCredentials:false,
+            withCredentials:true,
              })
         promiseHighScore.then((highscore) => {
             setUserHighScore(highscore.data)

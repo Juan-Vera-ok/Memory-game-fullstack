@@ -23,7 +23,6 @@ app.use(cookieParser())
 
 app.use(morgan('dev'));
 
-app.use(cors({origin:"*"}))
 /*app.use((req,res,next)=>{
   res.setHeader(
     "Access-Control-Allow-Origin","https://memory-game-client.onrender.com"
