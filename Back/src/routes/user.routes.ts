@@ -2,7 +2,6 @@ import {RequestHandler, Router} from 'express'
 import cors from 'cors'
 const router = Router();
 import * as userController from './users.controllers';
-router.use(cors());
 
 
 router.post('/user', userController.createUser);
