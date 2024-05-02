@@ -8,7 +8,7 @@ import cookieParser from "cookie-parser"
 import { access } from 'fs'
 const app = express()
 app.use(cors({
-  origin: true,
+  origin: false,
   credentials: true,
 }));
 app.use(express.json());
