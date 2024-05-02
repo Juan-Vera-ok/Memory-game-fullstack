@@ -8,7 +8,9 @@ import cookieParser from "cookie-parser"
 import { access } from 'fs'
 const app = express()
 app.use(cors({
-  origin: "https://memory-game-client.onrender.com",
+  origin: ["https://memory-game-client.onrender.com",
+  "https://memory-game-client.onrender.com/",
+  "https://memory-game-client.onrender.com/:1"],
   credentials: true,
 }));
 app.use(express.json());
