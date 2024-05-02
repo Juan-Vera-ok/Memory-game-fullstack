@@ -202,11 +202,7 @@ export default function Home(props: Props) {
         promiseUser.then((users) => { setTopUsers(users.data) })
         const promiseHighScore = axios.post(BACKEND_URL+'/highScore-current-user', {}, { 
             withCredentials:true,
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                "Authorization": "Basic " ,
-                "Access-Control-Allow-Origin":"true"
-            }  })
+             })
         promiseHighScore.then((highscore) => {
             setUserHighScore(highscore.data)
 
