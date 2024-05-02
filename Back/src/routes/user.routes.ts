@@ -6,7 +6,8 @@ import * as userController from './users.controllers';
 router.post('/user', userController.createUser);
 router.get('/users', userController.getUsers);
 router.post('/userAuth',cors({origin:"https://memory-game-client.onrender.com/",
-credentials:true
+credentials:true,
+preflightContinue:true
 }),(req, res) => {
 userController.auth
 });

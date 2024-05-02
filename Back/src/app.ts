@@ -54,7 +54,6 @@ app.use((req, res, next) => {
 });
 */
 
-
 let Regex = RegExp(/[0-9]+/i);
 
 var whitelist = ["https://memory-game-client.onrender.com",
