@@ -10,9 +10,8 @@ router.delete('/user/:id', userController.deleteUser);
 router.put('/user/:id', userController.updateUser);
 router.post('/update-highscore',cors({origin:"https://memory-game-client.onrender.com/",
   credentials:true
-}),(req, res) => {
-  userController.updateHighScore
-} );
+}),userController.updateHighScore
+ );
 router.post('/highScore-current-user',userController.highScoreOfCurrentUser)
 
 export default router
