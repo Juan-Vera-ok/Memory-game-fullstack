@@ -5,12 +5,7 @@ import * as userController from './users.controllers';
 
 router.post('/user', userController.createUser);
 router.get('/users', userController.getUsers);
-router.post('/userAuth',cors({origin:"https://memory-game-client.onrender.com/",
-credentials:true,
-preflightContinue:true
-}),(req, res) => {
-userController.auth
-});
+router.post('/userAuth',userController.auth);
 router.delete('/user/:id', userController.deleteUser);
 router.put('/user/:id', userController.updateUser);
 router.post('/update-highscore',cors({origin:"https://memory-game-client.onrender.com/",
