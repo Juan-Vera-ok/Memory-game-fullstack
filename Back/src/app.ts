@@ -8,10 +8,10 @@ import cookieParser from "cookie-parser"
 import { access } from 'fs'
 const app = express()
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://memory-game-client.onrender.com');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  res.header('Access-Control-Allow-Credentials','true')
+  res.setHeader('Access-Control-Allow-Origin', 'https://memory-game-client.onrender.com');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader('Access-Control-Allow-Credentials','true')
   next();
 });
 app.use(express.json());
