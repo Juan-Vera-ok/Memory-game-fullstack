@@ -1,8 +1,8 @@
 import { left, right } from "@popperjs/core";
 import React, { useState } from "react"
-import axios from "axios";
 import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
+import axiosInstace from "../axiosInstance";
 
 export default function SignUp(){
     const navigate = useNavigate();
@@ -123,7 +123,7 @@ export default function SignUp(){
 
         const handleSignUpButton = async() =>{
             try {
-                const response = await axios.post(BACKEND_URL+'/user',signUp);
+                const response = await axiosInstace.post(BACKEND_URL+'/user',signUp);
                 if(response.status==200){
                     toast.success("Usuario creado");
                     navigate("/login");

@@ -39,27 +39,17 @@ export const getUsers: RequestHandler = async (req, res) => {
     }
 }
 export const auth: RequestHandler = async (req, res) => {
-    try {
-        const userFound = await User.findOne({ user: req.body.data.username })
-        if (userFound) {
-            const correctPassword = await bcryptNow.compare(req.body.data.password, userFound?.passwordHashed)
+    const userFound = await User.findOne({ user: req.body.data.username });
 
-            if (correctPassword) {
-                const tokenSession = await tokenSign(userFound)
-                res.cookie("token", tokenSession)
+    if (!userFound) return res.status(403);
 
-                res.json(200)
-            }
+    const correctPassword = await bcryptNow.compare(req.body.data.password, userFound?.passwordHashed)
 
-        }
-        if (!userFound) {
-            res.json(301)
-        }
+    if (!correctPassword) return res.status(403);
 
+    const token = await tokenSign(userFound);
 
-    } catch (error) {
-        console.log(error)
-    }
+    return res.status(200).json({ token });
 }
 
 export const deleteUser: RequestHandler = async (req, res) => {
@@ -74,25 +64,16 @@ export const updateUser: RequestHandler = async (req, res) => {
 }
 
 export const updateHighScore: RequestHandler = async (req, res) => {
-console.log(req.cookies.token)
-    const tokenPromise = verifyToken(req.cookies.token)
-    tokenPromise.then(async (_id) => {
-        const user = await User.findById(_id);
-        
-        if (!user) { throw new Error }
-        if (!user.highScore||user.highScore < req.body.newUserHighScore) {
-            await User.updateOne({ _id: user._id }, { $set: { 'highScore': req.body.newUserHighScore } })
-            return res.json(user)
-        }
-    })
-
-
+    const user = (req as any).user;
+    if (!user) throw new Error("Missing user");
+    if (!user.highScore || user.highScore < req.body.newUserHighScore) {
+        await User.updateOne({ _id: user._id }, { $set: { 'highScore': req.body.newUserHighScore } })
+        return res.json(user)
+    }
 }
 
-export const highScoreOfCurrentUser:RequestHandler = async (req,res)=>{
-    const tokenPromise = verifyToken(req.cookies.token)
-    tokenPromise.then(async (_id)=>{
-        const user = await User.findById(_id);
-        res.json(user?.highScore)
-    })
+export const highScoreOfCurrentUser: RequestHandler = async (req, res) => {
+    const user = (req as any).user;
+    if (!user) throw new Error("Missing user");
+    res.json(user?.highScore)
 }

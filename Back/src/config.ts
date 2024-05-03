@@ -4,11 +4,8 @@ dotenv.config()
 console.log(process.env.PORT)
 
 export default {
-    MONGO_DATABASE: process.env.MONGO_DATABASE || "memory-game-database",
-    MONGO_USER: process.env.USER ||"admin",
-    MONGO_PASSWORD:process.env.MONGO_PASS|| "admin",
-    MONGO_HOST:process.env.MONGO_HOST ||"localhost",
-    MONGO_PORT:process.env.MONGO_PORT ||"27017",
+    ALLOWED_ORIGIN: process.env.ALLOWED_ORIGN || 'http://127.0.0.1:8080',
+    MONGO_URL: process.env.MONGO_URL || "mongodb://127.0.0.1:27017/memory-game-database",
     PORT: process.env.PORT || "3000",
     JWT_SECRET: getEnv('JWT_SECRET'),
 }
