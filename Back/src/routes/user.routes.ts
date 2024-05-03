@@ -8,11 +8,11 @@ router.get('/users', userController.getUsers);
 router.post('/userAuth',userController.auth);
 router.delete('/user/:id', userController.deleteUser);
 router.put('/user/:id', userController.updateUser);
-router.post('/update-highscore',cors({origin:"https://memory-game-client.onrender.com",
+router.post('/update-highscore',cors({origin:"https://memory-game-client.onrender.com/",
   credentials:true
 }),userController.updateHighScore
  );
-router.post('/highScore-current-user',cors({origin:"https://memory-game-client.onrender.com",
+router.post('/highScore-current-user',cors({origin:"https://memory-game-client.onrender.com/",
 credentials:true
 }),userController.highScoreOfCurrentUser)
 
