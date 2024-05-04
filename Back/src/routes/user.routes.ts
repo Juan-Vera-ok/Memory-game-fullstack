@@ -3,8 +3,6 @@ import cors from 'cors'
 const router = Router();
 import * as userController from './users.controllers';
 
-router.use()
-
 router.post('/user', userController.createUser);
 router.get('/users', userController.getUsers);
 router.post('/userAuth',userController.auth);
