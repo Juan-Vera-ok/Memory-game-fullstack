@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react"
 import { Link, Navigate, useNavigate } from "react-router-dom"
-import axios from "axios";
 import { toast } from "react-toastify";
+import axiosInstace from "../axiosInstance";
+
+declare global {
+    const BACKEND_URL: string;
+}
 
 
 interface Props {
@@ -30,11 +34,18 @@ export function Login(props: Props) {
         };
 
         try {
-            const userIdResponse = await axios.post(BACKEND_URL+'/userAuth', config);     
-            if (userIdResponse.data === 200) {
-                let isAuth = true;
+            const userIdResponse = await axiosInstace.post(BACKEND_URL + '/userAuth', config, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            const token = userIdResponse.data.token
+
+            if (userIdResponse.status === 200 && typeof token === "string") {
+                localStorage.setItem('token', token);
                 props.onLogin();
-                navigate("/");
+                navigate('/');
             } else {
                 if (userIdResponse.data === 301) {
                     toast.error("Usuario o contraseñas invalidas");

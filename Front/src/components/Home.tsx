@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useState } from "react"
 import Navbar from "./Navbar"
 import "../css/custom.css"
 import "../css/retroHighScore.css"
-import axios from "axios";
+import axiosInstance from "../axiosInstance";
 
 declare global{
     const BACKEND_URL: string
@@ -72,10 +72,11 @@ export default function Home(props: Props) {
                 if (userPattern.length > userHighScore) {
                     const newUserHighScore = userHighScore + 1;
                     setUserHighScore(newUserHighScore)
-                    const response = axios.post(`${BACKEND_URL}/update-highscore`, { newUserHighScore }, 
-                    { 
-                        withCredentials:true,
-                         })
+                    const token = localStorage.getItem("token");
+                    const response = axiosInstance.post(`${BACKEND_URL}/update-highscore`, { newUserHighScore }, 
+                        {
+                            headers: { "Authorization": `Bearer ${token}` }
+                        })
 
 
                 }
@@ -198,11 +199,20 @@ export default function Home(props: Props) {
     };
 
     useEffect(() => {
-        const promiseUser = axios.get(BACKEND_URL+'/users')
+        const token = localStorage.getItem("token");
+        const promiseUser = axiosInstance.get(BACKEND_URL+'/users', {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
         promiseUser.then((users) => { setTopUsers(users.data) })
-        const promiseHighScore = axios.post(BACKEND_URL+'/highScore-current-user', {}, { 
-            withCredentials:true,
-             })
+
+
+        const promiseHighScore = axiosInstance.post(BACKEND_URL + '/highScore-current-user', {}, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
         promiseHighScore.then((highscore) => {
             setUserHighScore(highscore.data)
 
