@@ -1,5 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
+
 var webpack = require('webpack');
 
 const config = {
@@ -19,7 +21,9 @@ const config = {
         }
     },
     module: {
-        rules: [
+        rules: [{
+
+        },
             {
                 test: /\.tsx$/,
                 use: ['babel-loader'],
@@ -54,6 +58,11 @@ const config = {
         }),
         new webpack.DefinePlugin({
             'BACKEND_URL': JSON.stringify(process.env.BACKEND_URL||"http://localhost:3000"),
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: 'public', to: '' }, // Copy all files from 'public' to root of 'dist'
+            ],
         })
     ]
 };
