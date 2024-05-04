@@ -4,7 +4,7 @@ dotenv.config()
 console.log(process.env.PORT)
 
 export default {
-    ALLOWED_ORIGIN: process.env.ALLOWED_ORIGN || 'http://127.0.0.1:8080',
+    ALLOWED_ORIGIN: process.env.ALLOWED_ORIGIN || 'http://127.0.0.1:8080',
     MONGO_URL: process.env.MONGO_URL || "mongodb://127.0.0.1:27017/memory-game-database",
     PORT: process.env.PORT || "3000",
     JWT_SECRET: getEnv('JWT_SECRET'),
