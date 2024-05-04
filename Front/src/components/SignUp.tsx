@@ -6,8 +6,7 @@ import axiosInstace from "../axiosInstance";
 
 export default function SignUp(){
     const navigate = useNavigate();
-
-    const Regex = RegExp(/^\s?[A-Z0–9]+[A-Z0–9._+-]{0,}@[A-Z0–9._+-]+\.[A-Z0–9]{2,4}\s?$/i);
+    const Regex = RegExp(/^.+@.+..+$/i);
     const [signUp,setSignUp]=useState(
         {   email:'',
             emailVerification:'',
